@@ -1,0 +1,137 @@
+.fileinput.input-groups {
+    display: table;
+}
+.input-groups {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+.input-groups .form-control, .input-groups-addon, .input-groups-btn {
+    display: table-cell;
+}
+.input-groups .form-control {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+}
+.fileinput.input-groups>.btn-file {
+    z-index: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.input-groups-addon {
+    min-width: 42px;
+}
+.input-groups-addon {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 10px;
+    text-align: center;
+}
+.input-groups-addon, .input-groups-btn {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.btn.btn-anim i, .fixed-sidebar-left .side-nav > li > a.btn-anim.documentation-btn i, .wizard > .actions a.btn-anim i, .dt-buttons .btn-anim.dt-button i, .tablesaw-sortable th.tablesaw-sortable-head button.btn-anim i, .sweet-alert button.btn-anim i, .owl-theme .owl-nav .btn-anim[class*="owl-"] i, button.btn-anim.fc-agendaDay-button.fc-state-default.fc-corner-right i, button.btn-anim.fc-month-button.fc-state-default.fc-corner-left i, button.btn-anim.fc-agendaWeek-button i, .btn-anim.fc-prev-button i, .btn-anim.fc-next-button i, .btn-anim.fc-today-button i {
+    padding-top: 5px;   
+}
+
+.btn.btn-anim i, .fixed-sidebar-left .side-nav > li > a.btn-anim.documentation-btn i, .wizard > .actions a.btn-anim i, .dt-buttons .btn-anim.dt-button i, .tablesaw-sortable th.tablesaw-sortable-head button.btn-anim i, .sweet-alert button.btn-anim i, .owl-theme .owl-nav .btn-anim[class*="owl-"] i, button.btn-anim.fc-agendaDay-button.fc-state-default.fc-corner-right i, button.btn-anim.fc-month-button.fc-state-default.fc-corner-left i, button.btn-anim.fc-agendaWeek-button i, .btn-anim.fc-prev-button i, .btn-anim.fc-next-button i, .btn-anim.fc-today-button i {
+    font-size: 13px;
+    height: 100%;
+    left: 0;
+    padding-top: 5px;
+    position: absolute;
+    top: -100%;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+}
+
+.btn.btn-anim .btn-text, .fixed-sidebar-left .side-nav > li > a.btn-anim.documentation-btn .btn-text, .wizard > .actions a.btn-anim .btn-text, .dt-buttons .btn-anim.dt-button .btn-text, .tablesaw-sortable th.tablesaw-sortable-head button.btn-anim .btn-text, .sweet-alert button.btn-anim .btn-text, .owl-theme .owl-nav .btn-anim[class*="owl-"] .btn-text, button.btn-anim.fc-agendaDay-button.fc-state-default.fc-corner-right .btn-text,
+button.btn-anim.fc-month-button.fc-state-default.fc-corner-left .btn-text,
+button.btn-anim.fc-agendaWeek-button .btn-text, .btn-anim.fc-prev-button .btn-text, .btn-anim.fc-next-button .btn-text, .btn-anim.fc-today-button .btn-text {
+    position: relative;
+    top: 0;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s; 
+}
+
+.btn.btn-anim:hover i, .fixed-sidebar-left .side-nav > li > a.btn-anim.documentation-btn:hover i, .wizard > .actions a.btn-anim:hover i, .dt-buttons .btn-anim.dt-button:hover i, .tablesaw-sortable th.tablesaw-sortable-head button.btn-anim:hover i, .sweet-alert button.btn-anim:hover i, .owl-theme .owl-nav .btn-anim[class*="owl-"]:hover i, button.btn-anim.fc-agendaDay-button.fc-state-default.fc-corner-right:hover i, button.btn-anim.fc-month-button.fc-state-default.fc-corner-left:hover i, button.btn-anim.fc-agendaWeek-button:hover i, .btn-anim.fc-prev-button:hover i, .btn-anim.fc-next-button:hover i, .btn-anim.fc-today-button:hover i {
+    top: 0;
+}
+
+.btn.btn-anim:hover .btn-text, .fixed-sidebar-left .side-nav > li > a.btn-anim.documentation-btn:hover .btn-text, .wizard > .actions a.btn-anim:hover .btn-text, .dt-buttons .btn-anim.dt-button:hover .btn-text, .tablesaw-sortable th.tablesaw-sortable-head button.btn-anim:hover .btn-text, .sweet-alert button.btn-anim:hover .btn-text, .owl-theme .owl-nav .btn-anim[class*="owl-"]:hover .btn-text, button.btn-anim.fc-agendaDay-button.fc-state-default.fc-corner-right:hover .btn-text, button.btn-anim.fc-month-button.fc-state-default.fc-corner-left:hover .btn-text, button.btn-anim.fc-agendaWeek-button:hover .btn-text, .btn-anim.fc-prev-button:hover .btn-text, .btn-anim.fc-next-button:hover .btn-text, .btn-anim.fc-today-button:hover .btn-text {
+    top: 50px; 
+}
+
+.btn.btn-icon-anim, .fixed-sidebar-left .side-nav > li > a.btn-icon-anim.documentation-btn, .wizard > .actions a.btn-icon-anim, .dt-buttons .btn-icon-anim.dt-button, .tablesaw-sortable th.tablesaw-sortable-head button.btn-icon-anim, .sweet-alert button.btn-icon-anim, .owl-theme .owl-nav .btn-icon-anim[class*="owl-"], button.btn-icon-anim.fc-agendaDay-button.fc-state-default.fc-corner-right, button.btn-icon-anim.fc-month-button.fc-state-default.fc-corner-left,
+button.btn-icon-anim.fc-agendaWeek-button, .btn-icon-anim.fc-prev-button, .btn-icon-anim.fc-next-button, .btn-icon-anim.fc-today-button {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none;
+    padding: 11px;
+    background: transparent; 
+}
+
+.btn.btn-icon-anim:hover, .fixed-sidebar-left .side-nav > li > a.btn-icon-anim.documentation-btn:hover, .wizard > .actions a.btn-icon-anim:hover, .dt-buttons .btn-icon-anim.dt-button:hover, .tablesaw-sortable th.tablesaw-sortable-head button.btn-icon-anim:hover, .sweet-alert button.btn-icon-anim:hover, .owl-theme .owl-nav .btn-icon-anim[class*="owl-"]:hover, button.btn-icon-anim.fc-agendaDay-button.fc-state-default.fc-corner-right:hover, button.btn-icon-anim.fc-month-button.fc-state-default.fc-corner-left:hover, button.btn-icon-anim.fc-agendaWeek-button:hover, .btn-icon-anim.fc-prev-button:hover, .btn-icon-anim.fc-next-button:hover, .btn-icon-anim.fc-today-button:hover, .btn.btn-icon-anim:focus, .fixed-sidebar-left .side-nav > li > a.btn-icon-anim.documentation-btn:focus, .wizard > .actions a.btn-icon-anim:focus, .dt-buttons .btn-icon-anim.dt-button:focus, .tablesaw-sortable th.tablesaw-sortable-head button.btn-icon-anim:focus, .sweet-alert button.btn-icon-anim:focus, .owl-theme .owl-nav .btn-icon-anim[class*="owl-"]:focus, button.btn-icon-anim.fc-agendaDay-button.fc-state-default.fc-corner-right:focus, button.btn-icon-anim.fc-month-button.fc-state-default.fc-corner-left:focus, button.btn-icon-anim.fc-agendaWeek-button:focus, .btn-icon-anim.fc-prev-button:focus, .btn-icon-anim.fc-next-button:focus, .btn-icon-anim.fc-today-button:focus, .btn.btn-icon-anim:active, .fixed-sidebar-left .side-nav > li > a.btn-icon-anim.documentation-btn:active, .wizard > .actions a.btn-icon-anim:active, .dt-buttons .btn-icon-anim.dt-button:active, .tablesaw-sortable th.tablesaw-sortable-head button.btn-icon-anim:active, .sweet-alert button.btn-icon-anim:active, .owl-theme .owl-nav .btn-icon-anim[class*="owl-"]:active, button.btn-icon-anim.fc-agendaDay-button.fc-state-default.fc-corner-right:active, button.btn-icon-anim.fc-month-button.fc-state-default.fc-corner-left:active, button.btn-icon-anim.fc-agendaWeek-button:active, .btn-icon-anim.fc-prev-button:active, .btn-icon-anim.fc-next-button:active, .btn-icon-anim.fc-today-button:active {
+    background: transparent;
+    border: none; 
+}
+
+.btn.btn-icon-anim i, .fixed-sidebar-left .side-nav > li > a.btn-icon-anim.documentation-btn i, .wizard > .actions a.btn-icon-anim i, .dt-buttons .btn-icon-anim.dt-button i, .tablesaw-sortable th.tablesaw-sortable-head button.btn-icon-anim i, .sweet-alert button.btn-icon-anim i, .owl-theme .owl-nav .btn-icon-anim[class*="owl-"] i, button.btn-icon-anim.fc-agendaDay-button.fc-state-default.fc-corner-right i, button.btn-icon-anim.fc-month-button.fc-state-default.fc-corner-left i, button.btn-icon-anim.fc-agendaWeek-button i, .btn-icon-anim.fc-prev-button i, .btn-icon-anim.fc-next-button i, .btn-icon-anim.fc-today-button i {
+    font-size: 16px; 
+}
+
+.btn.btn-icon-anim:before, .fixed-sidebar-left .side-nav > li > a.btn-icon-anim.documentation-btn:before, .wizard > .actions a.btn-icon-anim:before, .dt-buttons .btn-icon-anim.dt-button:before, .tablesaw-sortable th.tablesaw-sortable-head button.btn-icon-anim:before, .sweet-alert button.btn-icon-anim:before, .owl-theme .owl-nav .btn-icon-anim[class*="owl-"]:before, button.btn-icon-anim.fc-agendaDay-button.fc-state-default.fc-corner-right:before,
+button.btn-icon-anim.fc-month-button.fc-state-default.fc-corner-left:before, button.btn-icon-anim.fc-agendaWeek-button:before, .btn-icon-anim.fc-prev-button:before, .btn-icon-anim.fc-next-button:before, .btn-icon-anim.fc-today-button:before {
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      -webkit-transition: color 0.3s ease 0s, box-shadow 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+      -moz-transition: color 0.3s ease 0s, box-shadow 0.3s ease 0s, -moz-transform 0.3s ease 0s;
+      transition: color 0.3s ease 0s, box-shadow 0.3s ease 0s, transform 0.3s ease 0s;
+      width: 100%;
+      z-index: -1; 
+}
+
+.btn.btn-icon-anim.btn-default:before, .fixed-sidebar-left .side-nav > li > a.btn-icon-anim.btn-default.documentation-btn:before, .fixed-sidebar-left .side-nav > li > a.btn-icon-anim.documentation-btn.fc-prev-button:before, .fixed-sidebar-left .side-nav > li > a.btn-icon-anim.documentation-btn.fc-next-button:before, .fixed-sidebar-left .side-nav > li > a.btn-icon-anim.documentation-btn.fc-today-button:before, .wizard > .actions a.btn-icon-anim:before, .dt-buttons .btn-icon-anim.btn-default.dt-button:before, .tablesaw-sortable th.tablesaw-sortable-head button.btn-icon-anim:before, .sweet-alert button.btn-icon-anim.btn-default:before, .owl-theme .owl-nav .btn-icon-anim[class*="owl-"]:before, button.btn-icon-anim.btn-default.fc-agendaDay-button.fc-state-default.fc-corner-right:before, button.btn-icon-anim.fc-agendaDay-button.fc-state-default.fc-corner-right.fc-prev-button:before, button.btn-icon-anim.fc-agendaDay-button.fc-state-default.fc-corner-right.fc-next-button:before, button.btn-icon-anim.fc-agendaDay-button.fc-state-default.fc-corner-right.fc-today-button:before, button.btn-icon-anim.btn-default.fc-month-button.fc-state-default.fc-corner-left:before,
+button.btn-icon-anim.fc-month-button.fc-state-default.fc-corner-left.fc-prev-button:before, button.btn-icon-anim.fc-month-button.fc-state-default.fc-corner-left.fc-next-button:before, button.btn-icon-anim.fc-month-button.fc-state-default.fc-corner-left.fc-today-button:before, button.btn-icon-anim.btn-default.fc-agendaWeek-button:before, .btn-icon-anim.fc-prev-button:before, .btn-icon-anim.fc-next-button:before, .btn-icon-anim.fc-today-button:before {
+    box-shadow: 0 0 0 35px gainsboro inset; 
+}
+
+.btn.btn-anim, .fixed-sidebar-left .side-nav > li > a.btn-anim.documentation-btn, .wizard > .actions a.btn-anim, .dt-buttons .btn-anim.dt-button, .tablesaw-sortable th.tablesaw-sortable-head button.btn-anim, .sweet-alert button.btn-anim, .owl-theme .owl-nav .btn-anim[class*="owl-"], button.btn-anim.fc-agendaDay-button.fc-state-default.fc-corner-right, button.btn-anim.fc-month-button.fc-state-default.fc-corner-left, button.btn-anim.fc-agendaWeek-button, .btn-anim.fc-prev-button, .btn-anim.fc-next-button, .btn-anim.fc-today-button {
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.fileinput .form-control {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-control .fileinput-filename {
+    vertical-align: bottom;
+    height: 20px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    width: 85%;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+.fileinput {
+    margin-bottom: 0px;
+}

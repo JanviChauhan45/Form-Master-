@@ -1,0 +1,329 @@
+/*@colorCode : `rgba(250,201,0,1)`;
+@colorCodeHover : `rgba(250,201,0,0.5)`;*/
+
+/*
+DDB Mudra Color:
+
+Purple : #852582  -- rgba(133,37,130, 1)
+Dark Blue : #0ca9a7 -- rgba(12,169,167,1)
+Yellow : #eec154  --  rgba(238,193,84,1)
+Red : #e04810  -- rgba(224,72,16,1)
+Blue : #04a3ce -- rgba(4,163,206,1)
+
+*/
+
+:root {
+    --color-code-light: rgba(1,155,227,0.05); 
+    --color-code-hover: rgba(1,155,227,0.5);    
+    --color-code: rgba(1,155,227,1); 
+}
+
+
+.themeColor{
+	background-color: var(--color-code);
+    color:var(--color-code-font);
+    text-transform:lowercase;
+}
+.themeColor:hover{
+	
+	background-color: var(--color-code-hover);
+    color:#000000;
+    text-transform:lowercase;
+}
+.themeDialogHeader{
+	background-color: var(--color-code);
+    color:var(--color-code-font);
+    text-transform:lowercase;
+}
+.themeFooterColor{
+	background-color: var(--color-code);
+    color:#FFFFFF;
+    text-transform:lowercase;
+}
+.themeIconColor{
+    color:var(--color-code);
+}
+.themeIconColor:hover{
+    color: var(--color-code-hover);
+}
+
+#topnav .navigation-menu > li > a:hover {
+    background-color: var(--color-code-hover);
+}
+
+#topnav .navbar-custom {
+    background-color: #fff;
+    border-top: 1px solid var(--color-code);
+}
+
+.navstyle {
+    background-color: #ffffff !important;
+    border: 1px solid var(--color-code) !important;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: var(--color-code) !important;
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before {
+    background-color: var(--color-code) !important;
+}
+
+.btn-success {
+    color: #fff !important;
+    background-color: var(--color-code);
+    border-color: var(--color-code);
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open > .dropdown-toggle.btn-success, .btn-success:not([disabled]):not(.disabled).active, .btn-success:not([disabled]):not(.disabled):active, .show > .btn-success.dropdown-toggle {
+    background-color: var(--color-code-hover);
+    border-color: var(--color-code-hover);
+}
+
+.btn-danger:active, .btn-danger:focus, .btn-danger:hover, .btn-danger.active, .btn-danger.focus, .btn-danger:active, .btn-danger:focus, .btn-danger:hover, .open > .dropdown-toggle.btn-danger, .btn-danger:not([disabled]):not(.disabled).active, .btn-danger:not([disabled]):not(.disabled):active, .show > .btn-danger.dropdown-toggle {
+    background-color: var(--color-code-hover);
+    border-color: var(--color-code-hover);
+}
+
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .btn-warning.focus, .btn-warning:active, .btn-warning:focus, .btn-warning:hover, .open > .dropdown-toggle.btn-warning, .btn-warning:not([disabled]):not(.disabled).active, .btn-warning:not([disabled]):not(.disabled):active, .show > .btn-warning.dropdown-toggle {
+    background-color: var(--color-code-hover);
+    border-color: var(--color-code-hover);
+}
+
+.btn-danger {
+    color: #212529;
+    background-color: var(--color-code);
+    border-color: var(--color-code);
+}
+
+.activebread {
+    color: var(--color-code) !important;
+    font-weight: 600;
+}
+
+.datepicker table tr td.today, .datepicker table tr td.today:hover, .datepicker table tr td.today.disabled, .datepicker table tr td.today.disabled:hover {
+    background-color: var(--color-code) !important;
+}
+
+.datepicker .datepicker-switch:hover, .datepicker .next:hover, .datepicker .prev:hover, .datepicker tfoot tr th:hover, .datepicker table tr td.day.focused, .datepicker table tr td.day:hover {
+    background: var(--color-code-hover);
+    color: #fff !important;
+}
+
+.datepicker table tr td span.focused, .datepicker table tr td span:hover {
+    background: var(--color-code-hover);
+    color: #fff !important;
+}
+
+.btn-warning {
+    background-color: var(--color-code);
+    border: 1px solid var(--color-code);
+}
+
+.btn-info {
+    background-color: var(--color-code);
+    border: 1px solid var(--color-code);
+}
+
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-info:hover, .open > .dropdown-toggle.btn-info, .btn-info:not([disabled]):not(.disabled).active, .btn-info:not([disabled]):not(.disabled):active, .show > .btn-info.dropdown-toggle {
+    background-color: var(--color-code);
+    border: 1px solid var(--color-code);
+}
+
+.nav-link:hover {
+    text-decoration: none;
+    background: var(--color-code-hover);
+    color: #fff !important;
+}
+
+.bootstrap-select > .dropdown-menu > .dropdown-menu li a:hover {
+    background-color: var(--color-code-hover);
+    color: #ffffff;
+}
+
+.dropdown-item.active, .dropdown-item:active, .dropdown-item:focus, .dropdown-item:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--color-code-hover);
+}
+
+.form-control:focus {
+    border: 1px solid var(--color-code-hover);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: var(--color-code) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: var(--color-code-hover) !important;
+}
+
+/* start scroll css */
+.scrollbar-dusty-grass::-webkit-scrollbar {
+    background-color: #F5F5F5;
+}
+
+.scrollbar-dusty-grass::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-image:  -webkit-gradient(left top, right top, color-stop(0%, var(--color-code)), color-stop(100%, var(--color-code)));
+    background-image: linear-gradient(to right, var(--color-code) 0%, var(--color-code) 100%);
+}
+
+.scrollbar-dusty-grass::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: rgb(187, 187, 187);
+    border-radius: 10px;
+}
+/* end scroll css */
+
+/*
+a.text-info:focus, a.text-info:hover {
+    color: var(--color-code-hover) !important;
+}
+*/
+
+.tooltipster-sidetip .tooltipster-box {
+    background: #fff;
+    border: 1px solid var(--color-code);
+    border-radius: 0px;
+    border-radius: 5px;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-border, .tooltipster-sidetip.tooltipster-right .tooltipster-arrow-background {
+    border-right-color: var(--color-code);
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-border, .tooltipster-sidetip.tooltipster-left .tooltipster-arrow-background {
+    border-left-color: var(--color-code);
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-border, .tooltipster-sidetip.tooltipster-top .tooltipster-arrow-background {
+    border-top-color: var(--color-code);
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-border, .tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-background {
+    border-bottom-color: var(--color-code);
+}
+
+.ribbon-box .ribbon-info {
+    background: var(--color-code);
+}
+
+.ribbon-box .ribbon-info:before {
+    border-color: var(--color-code) transparent transparent;
+}
+
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+    color: var(--color-code);
+}
+
+body > div > div > div > div.col-md-4.fadeInLeft.animated > div > div.inbox-widget > div > p.inbox-item-author > a:hover {
+    color: var(--color-code) !important;
+}
+
+.imgactive {
+	border: 3px solid var(--color-code);
+}
+
+.fc-state-default {
+    border: 1px solid;
+    background-color: var(--color-code) !important;
+}
+
+.fc-toolbar .fc-state-active, .fc-toolbar .ui-state-active, .fc-toolbar button:focus, .fc-toolbar button:hover, .fc-toolbar .ui-state-hover {
+    background-color: var(--color-code-hover) !important;
+}
+
+.fc-toolbar h2 {
+    color: var(--color-code) !important;
+}
+
+.checkbox-primary input[type="checkbox"]:checked + label::before {
+    background-color: var(--color-code) !important;
+    border-color: var(--color-code) !important;
+}
+
+.modal-header {
+    background-color: var(--color-code) !important;
+}
+
+.model_header_bg_complete {
+    background-color: #62d62e !important;
+}
+
+.model_header_bg_deffered {
+    background-color: #0096e2 !important;
+}
+
+.model_header_bg_wip {
+    background-color: #fbbd05 !important;
+}
+
+.bg-theme {
+    background-color: var(--color-code) !important;
+}
+
+.bg-color {
+    color: var(--color-code) !important;
+}
+
+#topnav .has-submenu.float-menu.last-elements.active .submenu li.active > a {
+    color: var(--color-code) !important;
+    background-color: transparent !important;
+    font-weight: 700;
+}
+
+#topnav .has-submenu.active a {
+    color: #fff;
+    background-color: var(--color-code) !important;
+}
+
+#topnav .navigation-menu > li.has-submenu.open > a {
+    color: #fff;
+    background-color: var(--color-code) !important;
+}
+
+#topnav .has-submenu.active .submenu li.active > a {
+    color: var(--color-code) !important;
+}
+
+/*
+.list-group-item {
+    background-color: var(--color-code) !important;
+    border: 1px solid var(--color-code) !important;
+}
+*/
+
+.custom-box {
+    border: 1px solid var(--color-code) !important;
+}
+
+.bootstrap-timepicker-widget table td input {
+    background-color: var(--color-code) !important;
+}
+
+.bootstrap-timepicker-widget table td a:hover {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--color-code-hover) !important;
+}
+
+@media (max-width: 991px) {
+#topnav .navigation-menu > li .submenu li a:hover {
+    color: var(--color-code) !important;
+}
+}
+
+@media (min-width: 992px) {
+#topnav .navigation-menu > li .submenu li a:hover {
+    color: var(--color-code) !important;
+}
+    
+#topnav .navigation-menu > li > ul > li.has-submenu:active > a, #topnav .navigation-menu > li > ul > li.has-submenu:hover > a {
+    color: var(--color-code) !important;
+}
+}

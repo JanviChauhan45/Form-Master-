@@ -1,0 +1,386 @@
+.question {
+    margin-top: 0;
+    margin-left: 0px;
+    background: var(--color-code);
+    color: white;
+    padding: 0.2em 0.4em;
+    margin-right: 0px;
+    font-weight: 700;
+    font-size: 100%;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: 16%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: 82%;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+}
+@media (min-width: 768px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: 16%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: 82%;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+}
+
+/*Laptop Large Screen*/
+@media (max-width: 1500px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: 16%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: 82%;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+}
+
+/*Laptop Large Screen Normal Resolution*/
+@media (max-width: 1400px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        /* margin-bottom: 10px; */
+        margin-bottom: 0px;
+    }
+    dt {
+        float: left;
+        width: 10%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.2em 0.4em;
+        margin-right: 10px;
+        font-weight: 400;
+        font-size: 85%;
+        border-radius: 5px;
+    }
+    dd {
+        float: left;
+        width: 82%;
+        margin-bottom: 0rem !important;
+        text-align: justify !important;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+}
+
+/*Laptop Large Screen*/
+@media (max-width: 1300px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: 16%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: 82%;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+}
+
+/*Laptop Large Screen*/
+@media (max-width: 1250px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: 18%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: 80%;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+}
+
+/*Laptop Large Screen*/
+@media (max-width: 1199px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: 19%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: 78%;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+}
+
+/*Laptop Large Screen*/
+@media (max-width: 1150px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: 20%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: 77%;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+}
+
+/*Laptop Screen*/
+@media (max-width: 1050px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: 12%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: 80%;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+}
+
+/*Laptop Screen*/
+@media (max-width: 991px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: 14%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: 79%;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+
+}
+
+/*Mobile Resolution : After Laptop*/
+@media (max-width: 767px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: 20%;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: auto;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+
+    .mobile-screen-bottom-border{
+        border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+        padding: 10px 0px 4px 0px;
+    }
+}
+
+@media (max-width: 640px) {
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: auto;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: auto;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+    .mobile-screen-bottom-border{
+        border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+        padding: 10px 0px 4px 0px;
+    }
+}
+
+/* ipad Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+
+}
+
+/* ipad Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+
+}
+@media (max-width: 320px){
+    dl {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    dt {
+        float: left;
+        width: auto;
+        /* adjust the width; make sure the total of both is 100% */
+        text-align: center;
+        background: var(--color-code);
+        color: white;
+        padding: 0.29em 0.4em;
+        margin-right: 13px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+    dd {
+        float: left;
+        width: auto;
+        /* adjust the width; make sure the total of both is 100% */
+    }
+    .mobile-screen-bottom-border{
+        border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+        padding: 10px 0px 4px 0px;
+    }
+}

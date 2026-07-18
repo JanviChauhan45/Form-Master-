@@ -1,0 +1,29 @@
+@import url("../../custom/plugins/datatable/css/jquery.dataTables.min.css");
+@import url("../../custom/plugins/datatable/css/fixedColumns.dataTables.min.css");
+@import url("../../custom/plugins/datatable/Responsive/css/responsive.bootstrap.css");
+@import url("../../plugins/bootstrap-select/css/bootstrap-select.min.css");
+
+@import url("../../plugins/bootstrap-timepicker/bootstrap-timepicker.min.css");
+@import url("../../plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css");
+@import url("../../plugins/bootstrap-daterangepicker/daterangepicker.css");
+
+@import url("../../custom/plugins/jquery_toastr/jquery.toast.min.css");
+
+@import url("../../css/bootstrap.min.css");
+@import url("../../css/icons.css");
+@import url("../../css/style.css");
+@import url("../../custom/css/custom.css");
+@import url("../../custom/plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min.css");
+@import url("../../custom/plugins/jasny-bootstrap/dist/css/jasny_custom.css");
+@import url("../../plugins/animation/css/animate.min.css");
+@import url("../../plugins/drag-drop/css/dragula.min.css");
+@import url("../../plugins/tooltipster/tooltipster.bundle.min.css");
+
+@import url("../../custom/css/fonts.css");
+@import url("../../custom/plugins/jquery_confirm_v3/jquery-confirm.min.css");
+@import url("../../custom/plugins/theme/setting.css");
+@import url("../../custom/plugins/theme/mytheme.css");
+@import url("../../custom/plugins/image_change/image-change.css");
+
+@import url("../../custom/plugins/bt_menu/css/demo.css");
+@import url("../../custom/plugins/bt_menu/css/style.css");

@@ -1,0 +1,22 @@
+body {
+    background-color: #fff;
+}
+
+.card-box {
+    box-shadow: none !important;
+    background-color: transparent;
+    padding-top: 7.5rem !important;
+}    
+    
+.card {
+    box-shadow: none !important;
+    background-color: transparent;
+}
+
+h1.error_text {
+    color: var(--color-code) !important;
+    font-size: 80px !important;
+    font-weight: 900 !important;
+    text-shadow: 4px 4px 0 #ffffff, 6px 6px 0 #263238 !important;
+    line-height: 100px !important;
+}

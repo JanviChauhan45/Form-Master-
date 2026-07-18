@@ -1,0 +1,414 @@
+.fixed-plugin .dropdown .dropdown-menu {
+	border-radius: 10px
+}
+
+.fixed-plugin .dropdown .dropdown-menu li.adjustments-line {
+	border-bottom: 1px solid #ddd
+}
+
+.fixed-plugin .dropdown .dropdown-menu li {
+	padding: 5px 2px!important
+}
+
+.fixed-plugin .dropdown .dropdown-menu .adjustments-line .bootstrap-switch {
+	position: absolute;
+	right: 10px!important
+}
+
+.fixed-plugin .dropdown .dropdown-menu .adjustments-line label {
+	margin-bottom: .1rem!important
+}
+
+.fixed-plugin .badge,
+.fixed-plugin li>a {
+	transition: all .34s;
+	-webkit-transition: all .34s;
+	-moz-transition: all .34s
+}
+
+.fixed-plugin {
+	position: fixed;
+	top: 125px;
+	right: 0;
+	width: 25px;
+	background: rgb(51, 51, 51, 0.8);
+	z-index: 1031;
+	border-radius: 8px 0 0 8px;
+	text-align: center
+}
+
+.fixed-plugin .fa-cog {
+	color: #fff;
+	padding: 6px 6px 5px;
+	border-radius: 0 0 6px 6px;
+	width: auto
+}
+
+.fa-2x {
+    font-size: 1.4em !important;
+}
+
+.fixed-plugin .dropdown-menu {
+	right: 80px;
+	left: auto;
+	width: 290px;
+	border-radius: .1875rem;
+	padding: 0 10px
+}
+
+.fixed-plugin .dropdown-menu:after,
+.fixed-plugin .dropdown-menu:before {
+	right: 10px;
+	margin-left: auto;
+	left: auto
+}
+
+.fixed-plugin .fa-circle-thin {
+	color: #fff
+}
+
+.fixed-plugin .active .fa-circle-thin {
+	color: #0bf
+}
+
+.fixed-plugin .dropdown-menu>.active>a,
+.fixed-plugin .dropdown-menu>.active>a:focus,
+.fixed-plugin .dropdown-menu>.active>a:hover {
+	color: #777;
+	text-align: center
+}
+
+.fixed-plugin img {
+/*
+    border-radius: 12px;
+    width: 49%;
+    height: 55px;
+    margin: 10px auto;
+*/
+    border-radius: 10px;
+    width: 41%;
+    height: 50px;
+    margin: 10px 0px 10px 5px;
+}
+
+.fixed-plugin li.adjustments-line.more-height, 
+.fixed-plugin li.button-container, 
+.fixed-plugin li.header-title {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+}
+
+.fixed-plugin .dropdown-menu li>a:focus,
+.fixed-plugin .dropdown-menu li>a:hover {
+	box-shadow: none
+}
+
+.fixed-plugin .badge {
+	border: 3px solid #fff;
+	border-radius: 50%;
+    cursor: pointer;
+    min-width: 23px !important;
+	display: inline-block;
+	height: 23px;
+	margin-right: 5px;
+	position: relative;
+	width: 23px;
+	padding: 8px
+}
+
+.fixed-plugin .badge.active,
+.fixed-plugin .badge:hover {
+	border-color: #0bf
+}
+
+.fixed-plugin .badge-black {
+	background-color: #000
+}
+
+.fixed-plugin .badge-azure {
+	background-color: #4169e1
+}
+
+.fixed-plugin .badge-green {
+	background-color: #15c1a5
+}
+
+.fixed-plugin .badge-orange {
+	background-color: #f96332
+}
+
+.fixed-plugin .badge-yellow {
+	background-color: #ffb236
+}
+
+.fixed-plugin .badge-danger {
+	background-color: #927fbf
+}
+
+.fixed-plugin .badge-purple {
+	background-color: #019be3
+}
+
+.fixed-plugin .badge-white {
+	background-color: hsla(0, 0%, 78%, .2)
+}
+
+.fixed-plugin .badge-rose {
+	background-color: #e91e63
+}
+
+.fixed-plugin h5 {
+	font-size: 14px;
+	margin: 10px
+}
+
+.fixed-plugin .dropdown-menu li {
+	display: block;
+	padding: 18px 2px;
+	width: 25%;
+	float: left
+}
+
+.fixed-plugin li.adjustments-line,
+.fixed-plugin li.button-container,
+.fixed-plugin li.header-title {
+	width: 100%;
+	height: 35px;
+	min-height: inherit
+}
+
+.fixed-plugin li.button-container {
+	height: auto
+}
+
+.fixed-plugin li.button-container div {
+	margin-bottom: 5px
+}
+
+.fixed-plugin #sharrreTitle {
+	text-align: center;
+	padding: 10px 0;
+	height: 50px
+}
+
+.fixed-plugin li.header-title {
+	height: 30px;
+	line-height: 25px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-align: center
+}
+
+.fixed-plugin .adjustments-line p {
+	float: left;
+	display: inline-block;
+	margin-bottom: 0;
+	font-size: 1em;
+	color: #3c4858;
+	padding-top: 0
+}
+
+.fixed-plugin .adjustments-line a .badge-colors {
+	position: relative;
+	top: -2px
+}
+
+.fixed-plugin .adjustments-line .togglebutton {
+	padding-right: 7px
+}
+
+.fixed-plugin .adjustments-line .togglebutton .toggle {
+	margin-right: 0
+}
+
+.fixed-plugin .dropdown-menu>li.adjustments-line>a {
+	padding-right: 0;
+	padding-left: 0;
+	border-radius: 0;
+	margin: 0
+}
+
+.fixed-plugin .dropdown-menu>li>a.img-holder {
+	font-size: 16px;
+	text-align: center;
+	border-radius: 10px;
+	background-color: #fff;
+	border: 3px solid #fff;
+	padding-left: 0;
+	padding-right: 0;
+	opacity: 1;
+	cursor: pointer;
+	display: block;
+	max-height: 100px;
+	overflow: hidden;
+	padding: 0;
+	min-width: 25%
+}
+/* 
+.fixed-plugin .dropdown-menu>li>a.switch-trigger:focus,
+.fixed-plugin .dropdown-menu>li>a.switch-trigger:hover {
+	background-color: transparent
+} */
+/* 
+.fixed-plugin .dropdown-menu>li:focus>a.img-holder,
+.fixed-plugin .dropdown-menu>li:hover>a.img-holder {
+	border-color: rgba(0, 187, 255, .53)
+}
+
+.fixed-plugin .dropdown-menu>.active>a.img-holder {
+	border-color: #0bf;
+	background-color: #fff
+}
+
+.fixed-plugin .dropdown-menu>li>a img {
+	margin-top: auto
+}
+
+.fixed-plugin .btn-social {
+	width: 50%;
+	display: block;
+	width: 48%;
+	float: left;
+	font-weight: 600
+} */
+
+/* .fixed-plugin .btn-social i {
+	margin-right: 5px
+} */
+
+/* .fixed-plugin .btn-social:first-child {
+	margin-right: 2%
+} */
+
+.fixed-plugin .adjustments-line a,
+.fixed-plugin .adjustments-line a:focus,
+.fixed-plugin .adjustments-line a:hover {
+	color: transparent
+}
+
+.fixed-plugin .dropdown .dropdown-menu {
+	top: -80px!important;
+	opacity: 0;
+	left: -35px!important;
+	transform-origin: 100% 0
+}
+
+.fixed-plugin .dropdown.show .dropdown-menu {
+	opacity: 1;
+	transform: scale(1);
+	right: 80px;
+}
+
+.fixed-plugin .dropdown-menu:after,
+.fixed-plugin .dropdown-menu:before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	top: 65px;
+	width: 16px;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%)
+}
+
+.fixed-plugin .dropdown-menu:before {
+	border-bottom: 16px solid transparent;
+	border-left: 16px solid rgba(0, 0, 0, .2);
+	border-top: 16px solid transparent;
+	right: -16px
+}
+
+.fixed-plugin .dropdown-menu:after {
+	border-bottom: 16px solid transparent;
+	border-left: 16px solid #fff;
+	border-top: 16px solid transparent;
+	right: -15px
+}
+
+.wrapper-full-page~.fixed-plugin .dropdown.open .dropdown-menu {
+	transform: translateY(-17%)
+}
+
+.wrapper-full-page~.fixed-plugin .dropdown .dropdown-menu {
+	transform: translateY(-19%)
+}
+
+
+/* .background1{
+    background: ;
+    background-size: cover;
+    
+} */
+.background1:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(../../images/theme-background/background1.jpg);
+	/* background-repeat: no-repeat; */
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+	opacity: 0.3;
+	filter:alpha(opacity=10);
+}
+
+.background2:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(../../images/theme-background/background2.jpg);
+	/* background-repeat: no-repeat; */
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+	opacity: 0.3;
+	filter:alpha(opacity=10);
+}
+
+.background3:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(../../images/theme-background/background3.jpg);
+	/* background-repeat: no-repeat; */
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	opacity: 0.3;
+	filter:alpha(opacity=10);
+}
+
+.background4:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(../../images/theme-background/background4.jpg);
+	/* background-repeat: no-repeat; */
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	opacity: 0.3;
+	filter:alpha(opacity=10);
+}
