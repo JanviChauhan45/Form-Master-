@@ -1,11 +1,11 @@
 package in.fm.formmaster.session;
 
+import in.fm.formmaster.User.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.userdetails.User;
 
 import java.time.Instant;
 
@@ -17,8 +17,7 @@ import java.time.Instant;
 @NoArgsConstructor
 public class UserSession {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String tokenid;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

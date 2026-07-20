@@ -1,17 +1,21 @@
 package in.fm.formmaster.User;
 
 import in.fm.formmaster.security.JwtService;
+import in.fm.formmaster.session.UserSession;
+import in.fm.formmaster.session.UserSessionRepository;
+
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/auth")
@@ -23,10 +27,16 @@ public class AuthController {
     @Autowired
     private JwtService jwtService;
 
+    @Autowired
+    private UserSessionRepository userSessionRepository;
+
+
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(
             @RequestBody LoginRequestDTO loginRequest,
             HttpServletResponse response) {
+
+
 
         Authentication authentication =
                 authenticationManager.authenticate(
@@ -36,25 +46,135 @@ public class AuthController {
                         )
                 );
 
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        String token = jwtService.generateToken(userDetails);
 
-        System.out.println("=================================");
-        System.out.println("Generated JWT:");
-        System.out.println(token);
-        System.out.println("=================================");
 
-        Cookie cookie = new Cookie("jwt", token);
+        CustomUserDetails customUserDetails =
+                (CustomUserDetails) authentication.getPrincipal();
+
+
+
+
+        User user = customUserDetails.getUser();
+
+
+        String tokenId =
+                UUID.randomUUID().toString();
+
+
+
+
+        String token =
+                jwtService.generateToken(
+                        customUserDetails,
+                        tokenId
+                );
+
+
+
+
+        UserSession userSession =
+                new UserSession(
+                        tokenId,
+                        user,
+                        jwtService
+                                .extractExpiration(token)
+                                .toInstant()
+                );
+
+
+
+
+        userSessionRepository.save(userSession);
+
+
+
+
+        Cookie cookie =
+                new Cookie(
+                        "jwt",
+                        token
+                );
+
         cookie.setHttpOnly(true);
+
+
         cookie.setSecure(false);
+
+
         cookie.setPath("/");
+
+
         cookie.setMaxAge(60 * 60);
+
+
+
 
         response.addCookie(cookie);
 
+
+
+
         return ResponseEntity.ok(
-                new LoginResponseDTO(token, "Bearer")
+                new LoginResponseDTO(
+                        token,
+                        "Bearer"
+                )
+        );
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+
+        Cookie[] cookies = request.getCookies();
+
+        String jwt = null;
+
+
+        if (cookies != null) {
+
+            for (Cookie cookie : cookies) {
+
+                if ("jwt".equals(cookie.getName())) {
+
+                    jwt = cookie.getValue();
+
+                    break;
+                }
+            }
+        }
+
+
+        if (jwt != null) {
+
+            String tokenId =
+                    jwtService.extractTokenId(jwt);
+
+            userSessionRepository.deleteById(tokenId);
+        }
+
+
+        Cookie deleteCookie =
+                new Cookie("jwt", null);
+
+        deleteCookie.setHttpOnly(true);
+
+        deleteCookie.setSecure(false);
+
+        deleteCookie.setPath("/");
+
+
+        deleteCookie.setMaxAge(0);
+
+
+        response.addCookie(deleteCookie);
+
+
+        return ResponseEntity.ok(
+                "Logged out successfully"
         );
     }
 }

@@ -27,19 +27,32 @@ public class JwtService {
                 SECRET_KEY.getBytes(StandardCharsets.UTF_8)
         );
     }
-    private String createToken(Map<String, Object> claims,
-                               UserDetails userDetails) {
+    private String createToken(
+            Map<String, Object> claims,
+            UserDetails userDetails,
+            String tokenId) {
 
         return Jwts.builder()
                 .claims(claims)
                 .subject(userDetails.getUsername())
+
+
+                .id(tokenId)
+
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
+                .expiration(
+                        new Date(
+                                System.currentTimeMillis()
+                                        + 1000 * 60 * 60
+                        )
+                )
                 .signWith(getSigningKey())
                 .compact();
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(
+            UserDetails userDetails,
+            String tokenId) {
 
         Map<String, Object> claims = new HashMap<>();
 
@@ -48,15 +61,28 @@ public class JwtService {
 
         claims.put(
                 "role",
-                customUser.getUser().getRoleid().getRole()
+                customUser.getUser()
+                        .getRoleid()
+                        .getRole()
         );
 
-
-        return createToken(claims, userDetails);
+        return createToken(
+                claims,
+                userDetails,
+                tokenId
+        );
     }
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+
+    public String extractTokenId(String token) {
+
+        return extractClaim(
+                token,
+                Claims::getId
+        );
     }
 
     public Date extractExpiration(String token) {
