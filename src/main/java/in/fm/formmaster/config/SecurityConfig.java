@@ -52,7 +52,8 @@ public class SecurityConfig {
                                         "/WEB-INF/views/**",
                                         "/auth/**",
                                         "/assets/**",
-                                        "/multipart/form-data"
+                                        "/multipart/form-data",
+                                        "/uploads/**"
 //                                        "/index"
                                 ).permitAll()
                         .requestMatchers("/api/users/**").hasRole("ADMIN")

@@ -96,23 +96,38 @@ function loadUsers(){
                 }
                 let row =`
                     <tr>
-                        <td>
-                        <h2 class="table-avatar">
-                        <a href="javascript:void(0)" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-placement="right" data-template="<div class=&quot;popover fade bs-popover-right&quot; role=&quot;tooltip&quot; x-placement=&quot;right&quot;><div class=&quot;arrow&quot;></div><h3 class=&quot;popover-header p-0 border_radius6&quot;></h3></div>"
-                        data-title="<img src='assets/images/users/avatar-8.jpg'
-                         width='150' height='150' class='border_radius6'>" data-original-title="" title="">
-                            <img
-                                src="${imagePath}"
-                                width="40"
-                                height="40"
-                                class="img-radius avatar"
-                                style="object-fit:cover;"
-                            >
+                         <td>
+                                <h2 class="table-avatar">
 
-                            ${user.firstname} ${user.lastname}
-                            </h2>
-                        </td>
+                                    <a href="javascript:void(0)"
+                                       data-toggle="popover"
+                                       data-trigger="hover"
+                                       data-html="true"
+                                       data-placement="right"
+                                       data-template="<div class=&quot;popover fade bs-popover-right&quot; role=&quot;tooltip&quot;>
+                                           <div class=&quot;arrow&quot;></div>
+                                           <h3 class=&quot;popover-header p-0 border_radius6&quot;></h3>
+                                       </div>"
+                                       data-title="<img src='${imagePath}'
+                                            width='150'
+                                            height='150'
+                                            style='object-fit:cover;'
+                                            class='border_radius6'>">
+
+                                        <img
+                                            src="${imagePath}"
+                                            onerror="this.onerror=null; this.src='assets/images/users/default_user.png';"
+                                            width="30"
+                                            height="30"
+                                            class="img-radius avatar"
+                                            style="object-fit:cover; border-radius:50%;"
+                                        >
+
+                                        ${user.firstname} ${user.lastname}
+
+                                    </a>
+                                </h2>
+                            </td>
                         <td>${user.email}</td>
                         <td>${user.contactno}</td>
                         <td>${user.valid_from}</td>
@@ -249,6 +264,13 @@ function saveUser(){
                      message = "Category already exists ";
                      }
 
+
+                        $.toast({
+                            heading: 'Error',
+                            text: message,
+                            position: 'top-right',
+                            icon: 'error'
+                        });
 
 
 
