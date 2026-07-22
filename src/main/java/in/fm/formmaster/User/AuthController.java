@@ -107,9 +107,6 @@ public class AuthController {
 
         cookie.setMaxAge(60 * 60);
 
-
-
-
         response.addCookie(cookie);
 
 
@@ -118,7 +115,8 @@ public class AuthController {
         return ResponseEntity.ok(
                 new LoginResponseDTO(
                         token,
-                        "Bearer"
+                        "Bearer",
+                        user.getRoleid().getRole()
                 )
         );
     }
@@ -176,5 +174,29 @@ public class AuthController {
         return ResponseEntity.ok(
                 "Logged out successfully"
         );
+    }
+
+
+    @GetMapping("/me")
+    public ResponseEntity<UserDTO> getCurrentUser(Authentication authentication) {
+
+        CustomUserDetails customUserDetails =
+                (CustomUserDetails) authentication.getPrincipal();
+
+        User user = customUserDetails.getUser();
+
+        UserDTO dto = new UserDTO();
+
+        dto.setId(user.getId());
+        dto.setFirstname(user.getFirstname());
+        dto.setLastname(user.getLastname());
+        dto.setEmail(user.getEmail());
+        dto.setContactno(user.getContactno());
+        dto.setGender(user.getGender());
+        dto.setRoleid(user.getRoleid().getId());
+        dto.setActive(user.getActive());
+        dto.setProfile_img(user.getProfile_img());
+
+        return ResponseEntity.ok(dto);
     }
 }

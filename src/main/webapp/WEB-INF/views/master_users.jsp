@@ -19,10 +19,16 @@
 <link rel="stylesheet" type="text/css" href="assets/custom/plugins/icheck/css/icheck.css">
 <link rel="stylesheet" type="text/css" href="assets/custom/plugins/icheck/css/custom.css">
 <link rel="stylesheet" type="text/css" href="assets/custom/plugins/icheck/css/checkboxes-radios.css">
-<link href="assets/plugins/jquery-toast-plugin/jquery.toast.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
 
 
 <script src="assets/js/modernizr.min.js"></script>
+
 
 </head>
 
@@ -32,8 +38,8 @@
 <header id="topnav">
 <script src="assets/custom/js/header.js"></script>
 <!-- end topbar-main -->
-
 <script src="assets/custom/js/menu.js"></script>
+
 </header>
 <!-- End Navigation Bar-->
 
@@ -335,7 +341,9 @@
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/waves.js"></script>
-<script src="assets/js/jquery.slimscroll.js"></script>        
+<script src="assets/js/jquery.slimscroll.js"></script>
+
+
 
 <!-- Required datatable js -->
 <script src="assets/custom/plugins/datatable/js/jquery.dataTables.min.js"></script>
@@ -428,7 +436,15 @@ $("#searchbtn").click(function(){
 });
 
 </script>
-<script src="assets/plugins/jquery-toast-plugin/jquery.toast.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+
+
+
+<script>
+    console.log("Toast immediately after loading:", typeof $.toast);
+</script>
+
+
 <script src="assets/mypages/master_users.js"></script>
 
 </body>

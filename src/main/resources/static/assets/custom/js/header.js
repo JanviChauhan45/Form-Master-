@@ -34,13 +34,13 @@ document.write("<a class='nav-link dropdown-toggle waves-effect nav-user' data-t
 document.write("<img src='assets/images/users/face.jpg' alt='user' class='rounded-circle'> <span class='ml-1 pro-user-name'>" + usertype + " <i class='mdi mdi-chevron-down'></i> </span>");
 document.write("</a>");
 document.write("<div class='dropdown-menu dropdown-menu-right profile-dropdown zoomIn animated'>");
-document.write("<a href='profile.html' class='dropdown-item notify-item border-0'>");
+document.write("<a href='profile' class='dropdown-item notify-item border-0'>");
 document.write("<i class='fa fa-user'></i> <span>Profile</span>");
 document.write("</a>");
 document.write("<a href='javascript:void(0)' class='dropdown-item notify-item border-0' data-toggle='modal' data-target='.changepasswordmodal'>");
 document.write("<i class='fa fa-key'></i> <span>Change Password</span>");
 document.write("</a>");
-document.write("<a href='index.html' onclick='javascript:window.localStorage.clear();' class='dropdown-item notify-item border-0'>");
+document.write("<a href='index' onclick='javascript:window.localStorage.clear();' class='dropdown-item notify-item border-0'>");
 document.write("<i class='fa fa-sign-out'></i> <span>Logout</span>");
 document.write("</a>");
 document.write("</div>");

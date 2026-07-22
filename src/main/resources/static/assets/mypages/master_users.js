@@ -5,6 +5,15 @@ $(document).ready(function(){
 
 });
 
+$(".client_add_btn").click(function () {
+
+    clearForm();
+
+    $("#portfolio_details").hide();
+    $("#portfolio_add_detail").show();
+
+});
+
 $("#profile_img").on("change", function () {
 
     let file = this.files[0];
@@ -428,17 +437,18 @@ function editUser(id){
 
               clearForm();
 
-            // FIRST: hide table page and open user form
+
             $("#portfolio_details").hide();
             $("#portfolio_add_detail").show();
 
-            // Change heading
+
             $("#portfolio_add_detail .card-header h5").text("Edit User");
 
-            // Fill basic fields
+
             $("#firstname").val(user.firstname);
             $("#lastname").val(user.lastname);
             $("#email").val(user.email);
+            $("#email").prop("readonly", true);
             $("#contactno").val(user.contactno);
 
             // Dates
@@ -477,6 +487,7 @@ function editUser(id){
             $("#saveBtnText").text("Update");
 
 
+
         },
 
         error:function(xhr){
@@ -499,7 +510,11 @@ function clearForm(){
     $('#firstname').val('');
     $('#lastname').val('');
     $('#contactno').val('');
-    $('#email').val('');
+
+    $("#email")
+        .val("")
+        .prop("readonly", false);
+
     $('#gender').selectpicker('refresh');
     $('#roleid').selectpicker('refresh');
     $('#valid_from').val('');

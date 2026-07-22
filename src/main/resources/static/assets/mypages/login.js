@@ -67,7 +67,11 @@ function login() {
 
             setTimeout(function() {
 
-                window.location.href = '/master_form';
+                if(response.role === "ADMIN"){
+                       window.location.href="/master_form";
+                   }else{
+                       window.location.href="/fill_forms";
+                   }
 
 
 
