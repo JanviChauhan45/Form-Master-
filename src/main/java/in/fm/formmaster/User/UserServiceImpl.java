@@ -10,6 +10,8 @@ import in.fm.formmaster.mail_service.EmailService;
 import in.fm.formmaster.mail_service.MailDetailsDTO;
 import in.fm.formmaster.utility.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -161,7 +163,46 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUserById(Long id) {
-        return null;
+
+        try{
+            User user =repo.findById(id).get();
+
+            UserDTO dto = new UserDTO();
+            dto.setId(user.getId());
+            dto.setFirstname(user.getFirstname());
+            dto.setLastname(user.getLastname());
+            dto.setEmail(user.getEmail());
+            dto.setRoleid(user.getRoleid().getId());
+            dto.setContactno(user.getContactno());
+            dto.setGender(user.getGender());
+            dto.setValid_from(
+                    user.getValid_from()
+                            .toLocalDateTime()
+                            .toLocalDate()
+                            .format(formatter)
+            );
+
+            dto.setValid_to(
+                    user.getValid_to()
+                            .toLocalDateTime()
+                            .toLocalDate()
+                            .format(formatter)
+            );
+
+            dto.setActive(user.getActive());
+            dto.setProfile_img(user.getProfile_img());
+            dto.setCreatedBy(user.getCreatedBy());
+            dto.setEmail(user.getEmail());
+            dto.setCreatedOn(user.getCreatedOn());
+            dto.setModifiedBy(user.getModifiedBy());
+            dto.setModifiedOn(user.getModifiedOn());
+
+            return dto;
+
+        }
+        catch(Exception e){
+            throw new IllegalArgumentException(e);
+        }
     }
 
     @Override
@@ -227,21 +268,26 @@ public class UserServiceImpl implements UserService {
                             new ResourceNotFound("User not found"));
 
             // Soft Delete
-            user.setActive(AppConstants.DELETED);
 
-            // End Validity Today
-            user.setValid_to(
-                    Timestamp.valueOf(LocalDate.now().atStartOfDay())
-            );
 
             // Audit Fields
             user.setModifiedOn(LocalDateTime.now());
 
-            // If you have logged-in user information,
-            // you can also set ModifiedBy here.
-            // user.setModifiedBy(...);
+            User loggedInUser = getLoggedInUser();
+
+            user.setActive(AppConstants.DELETED);
+
+            user.setValid_to(
+                    Timestamp.valueOf(
+                            LocalDate.now().atStartOfDay()
+                    )
+            );
+
+            user.setModifiedBy(loggedInUser);
 
             repo.save(user);
+
+
 
         } catch (Exception e) {
             throw new IllegalArgumentException(e.getMessage());
@@ -360,6 +406,23 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             throw new IllegalArgumentException(e.getMessage());
         }
+    }
+
+    private User getLoggedInUser() {
+
+        Authentication authentication =
+                SecurityContextHolder
+                        .getContext()
+                        .getAuthentication();
+
+        String email = authentication.getName();
+
+        return repo.findByEmail(email)
+                .orElseThrow(() ->
+                        new ResourceNotFound(
+                                "Logged in user not found"
+                        )
+                );
     }
 
 //    @Override

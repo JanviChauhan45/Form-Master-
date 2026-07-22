@@ -411,6 +411,89 @@ function deleteUser(id){
 
 }
 
+function editUser(id){
+
+    $.ajax({
+
+        url: "http://localhost:8080/api/users/" + id,
+        type: "GET",
+
+        xhrFields:{
+            withCredentials:true
+        },
+
+        success:function(user){
+
+            console.log("Editing user:", user);
+
+              clearForm();
+
+            // FIRST: hide table page and open user form
+            $("#portfolio_details").hide();
+            $("#portfolio_add_detail").show();
+
+            // Change heading
+            $("#portfolio_add_detail .card-header h5").text("Edit User");
+
+            // Fill basic fields
+            $("#firstname").val(user.firstname);
+            $("#lastname").val(user.lastname);
+            $("#email").val(user.email);
+            $("#contactno").val(user.contactno);
+
+            // Dates
+            $("#valid_from").val(user.valid_from);
+            $("#valid_to").val(user.valid_to);
+
+            // Gender
+            $("#gender").val(user.gender);
+            $("#gender").selectpicker("refresh");
+
+            // Role
+            $("#roleid").val(user.roleid);
+            $("#roleid").selectpicker("refresh");
+
+            // Profile image
+            if(user.profile_img){
+
+                $("#profilePreview").attr(
+                    "src",
+                    "http://localhost:8080/uploads/" + user.profile_img
+                );
+
+            } else {
+
+                $("#profilePreview").attr(
+                    "src",
+                    "assets/images/users/default_user.png"
+                );
+
+            }
+
+
+            $("#saveBtn")
+                .attr("onclick", "updateUser(" + id + ")");
+
+            $("#saveBtnText").text("Update");
+
+
+        },
+
+        error:function(xhr){
+
+            console.log("Edit API error:", xhr);
+
+            $.toast({
+                heading: "Error",
+                text: "Unable to load user details",
+                position: "top-right",
+                icon: "error"
+            });
+        }
+
+    });
+
+}
 
 function clearForm(){
     $('#firstname').val('');
@@ -431,8 +514,6 @@ function clearForm(){
 
     $("#roleid").val("");
     $("#roleid").selectpicker("refresh");
-
-
 
 }
 

@@ -19,6 +19,8 @@
 <link rel="stylesheet" type="text/css" href="assets/custom/plugins/icheck/css/icheck.css">
 <link rel="stylesheet" type="text/css" href="assets/custom/plugins/icheck/css/custom.css">
 <link rel="stylesheet" type="text/css" href="assets/custom/plugins/icheck/css/checkboxes-radios.css">
+<link href="assets/plugins/jquery-toast-plugin/jquery.toast.min.css" rel="stylesheet">
+
 
 <script src="assets/js/modernizr.min.js"></script>
 
@@ -307,7 +309,15 @@
                         </div>
 
                         <div class="text-center border-top mt-1 pt-2 mb-2">
-                            <a class="save_port_details btn btn-success text-white btn-padding" onclick ="saveUser()"><i class="fa fa-floppy-o mr-2"></i>Save</a>
+
+                            <a id="saveBtn"
+                               class="save_port_details btn btn-success text-white btn-padding"
+                               onclick="saveUser()">
+
+                                <i class="fa fa-floppy-o mr-2"></i>
+                                <span id="saveBtnText">Save</span>
+
+                            </a>
                             <a class="show_port_table btn btn-danger text-white btn-padding ml-1"><i class="fa fa-times mr-2"></i>Cancel</a>
                         </div>
                     </div>
@@ -352,9 +362,10 @@
 <script src="assets/custom/plugins/jquery_confirm_v3/jquery-confirm-custom.js"></script>
 
 <script src="assets/custom/plugins/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
-<script src="assets/mypages/master_users.js"></script>
+
 
 <script src="assets/custom/js/commonmodal.js"></script>
+
 <script>
 $('#valid_from').closest('div').datepicker({
     autoclose: true,
@@ -417,6 +428,8 @@ $("#searchbtn").click(function(){
 });
 
 </script>
+<script src="assets/plugins/jquery-toast-plugin/jquery.toast.min.js"></script>
+<script src="assets/mypages/master_users.js"></script>
 
 </body>
 
