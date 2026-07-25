@@ -368,51 +368,80 @@ function updateUser(id){
 
 function deleteUser(id){
 
-    if(!confirm("Are you sure you want to delete this user?")){
-        return;
-    }
+    $.confirm({
 
-    $.ajax({
+        title: 'Delete User',
+        content: 'Are you sure you want to delete this user?',
+        theme: 'material',
+        icon: 'fa fa-warning',
+        type: 'red',
 
-        url: "http://localhost:8080/api/users/" + id,
+        buttons: {
 
-        type: "DELETE",
+            delete: {
 
-        xhrFields:{
-            withCredentials:true
-        },
+                text: 'Delete',
+                btnClass: 'btn-red',
 
-        success:function(){
+                action: function(){
 
-            $.toast({
+                    $.ajax({
 
-                heading:'Success',
+                        url: "http://localhost:8080/api/users/" + id,
 
-                text:'User Deleted Successfully',
+                        type: "DELETE",
 
-                position:'top-right',
+                        xhrFields:{
+                            withCredentials:true
+                        },
 
-                icon:'success'
+                        success:function(){
 
-            });
+                            $.toast({
 
-            loadUsers();
+                                heading:'Success',
 
-        },
+                                text:'User Deleted Successfully',
 
-        error:function(xhr){
+                                position:'top-right',
 
-            $.toast({
+                                icon:'success'
 
-                heading:'Error',
+                            });
 
-                text:xhr.responseText,
+                            loadUsers();
 
-                position:'top-right',
+                        },
 
-                icon:'error'
+                        error:function(xhr){
 
-            });
+                            $.toast({
+
+                                heading:'Error',
+
+                                text:xhr.responseText,
+
+                                position:'top-right',
+
+                                icon:'error'
+
+                            });
+
+                        }
+
+                    });
+
+                }
+
+            },
+
+            cancel: {
+
+                text: 'Cancel',
+
+                btnClass: 'btn-default'
+
+            }
 
         }
 
