@@ -1,5 +1,6 @@
 package in.fm.formmaster.User;
 
+import in.fm.formmaster.constants.AppConstants;
 import in.fm.formmaster.security.JwtService;
 import in.fm.formmaster.session.UserSession;
 import in.fm.formmaster.session.UserSessionRepository;
@@ -58,10 +59,35 @@ public class AuthController {
         User user = customUserDetails.getUser();
 
 
+
+
+        UserSession existingSession =
+                userSessionRepository
+                        .findByUserAndActive(
+                                user,
+                                AppConstants.ACTIVE
+                        )
+                        .orElse(null);
+
+        if (existingSession != null) {
+
+            if (existingSession.getExpiryAt().isAfter(java.time.Instant.now())) {
+
+                return ResponseEntity.badRequest()
+                        .body(new LoginResponseDTO(
+                                null,
+                                "Bearer",
+                                "User already logged in."
+                        ));
+            }
+
+            existingSession.setActive(AppConstants.DELETED);
+
+            userSessionRepository.save(existingSession);
+        }
+
         String tokenId =
                 UUID.randomUUID().toString();
-
-
 
 
         String token =
@@ -79,7 +105,8 @@ public class AuthController {
                         user,
                         jwtService
                                 .extractExpiration(token)
-                                .toInstant()
+                                .toInstant(),
+                        AppConstants.ACTIVE
                 );
 
 
@@ -151,7 +178,15 @@ public class AuthController {
             String tokenId =
                     jwtService.extractTokenId(jwt);
 
-            userSessionRepository.deleteById(tokenId);
+            UserSession session =
+                    userSessionRepository.findById(tokenId).orElse(null);
+
+            if (session != null) {
+
+                session.setActive(AppConstants.INACTIVE);
+
+                userSessionRepository.save(session);
+            }
         }
 
 

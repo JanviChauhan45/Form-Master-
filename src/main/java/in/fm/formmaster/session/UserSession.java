@@ -1,6 +1,7 @@
 package in.fm.formmaster.session;
 
 import in.fm.formmaster.User.User;
+import in.fm.formmaster.constants.AppConstants;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,9 @@ public class UserSession {
 
     @Column(name = "expiry_at", nullable = false)
     private Instant expiryAt;
+
+    @Column(nullable = false)
+    private int active = AppConstants.ACTIVE;
 
 
 }
