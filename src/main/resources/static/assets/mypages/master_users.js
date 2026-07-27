@@ -55,9 +55,14 @@ $.ajax({
     success: function (roles) {
 
         $("#roleid").empty();
+        $("#searchRole").empty();
 
         $("#roleid").append(
             '<option value="">Select Role</option>'
+        );
+
+        $("#searchRole").append(
+            '<option value="">All Roles</option>'
         );
 
         roles.forEach(function(role){
@@ -65,10 +70,19 @@ $.ajax({
             $("#roleid").append(
                 `<option value="${role.id}">
                     ${role.role}
-                 </option>`
+                </option>`
+            );
+
+            $("#searchRole").append(
+                `<option value="${role.id}">
+                    ${role.role}
+                </option>`
             );
 
         });
+
+        $("#roleid").selectpicker("refresh");
+        $("#searchRole").selectpicker("refresh");
 
     }
 });
@@ -96,6 +110,7 @@ function loadUsers(){
             $("#userTableBody").empty();
 
             response.forEach(user => {
+
                 let imagePath;
 
                 if(user.profile_img){
@@ -175,6 +190,11 @@ function loadUsers(){
                 $("#userTableBody").append(row);
 
             });
+
+             $('#users_datatable').DataTable({
+                    destroy: true,
+                    pageLength: 10
+                });
 
 
         },
@@ -560,6 +580,16 @@ function clearForm(){
     $("#roleid").selectpicker("refresh");
 
 }
+
+$("#searchbtn").click(function () {
+
+    let table = $("#users_datatable").DataTable();
+
+    let name = $("#searchName").val();
+
+    table.search(name).draw();
+
+});
 
 
 

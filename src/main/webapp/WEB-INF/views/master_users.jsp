@@ -108,14 +108,17 @@
                                         <div class="col-xl-2 col-lg-2 col-sm-4 col-xs-12 colmspadding">
                                             <div class="form-group mb-0">
                                                 <label class="mb-1">Name</label>
-                                                <input type="text" class="form-control">
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="searchName">
                                             </div>
                                         </div>
                                         
                                         <div class="col-xl-2 col-lg-2 col-sm-4 col-xs-12 colmspadding">
                                             <div class="form-group mb-0">
                                                 <label class="mb-1">Role</label>
-                                                <select class="selectpicker" data-style="lineheight12 bg-transfer" data-live-search="true">
+                                                <select id="searchRole" class="selectpicker" data-style="lineheight12 bg-transfer" data-live-search="true">
                                                     <option value="" selected="selected">Select</option>
                                                     <option value="1">Admin</option>
                                                     <option value="2">User</option>
