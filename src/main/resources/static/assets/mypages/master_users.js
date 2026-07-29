@@ -46,13 +46,13 @@ function removeImage(){
 }
 
 
-$.ajax({
-    url: "http://localhost:8080/api/role",
-    type: "GET",
-    xhrFields: {
-        withCredentials: true
-    },
-    success: function (roles) {
+callApi({
+
+    url:"http://localhost:8080/api/role",
+
+    type:"GET",
+
+    success:function(roles){
 
         $("#roleid").empty();
         $("#searchRole").empty();
@@ -94,26 +94,19 @@ function loadUsers(){
         $('#users_datatable').DataTable().destroy();
     }
 
-    $.ajax({
+    callApi({
+
         url:"http://localhost:8080/api/users/getAll",
+
         type:"GET",
 
+        success:function(response){
 
-    xhrFields:{
-           withCredentials:true
-       },
-
-
-
-        success: function(response){
             console.log(response);
             $("#userTableBody").empty();
 
             response.forEach(user => {
-//
-//                 if(!validateUser()){
-//                        return;
-//                    }
+
 
                 let imagePath;
 
@@ -201,24 +194,8 @@ function loadUsers(){
                 });
 
 
-        },
-       error:function(xhr){
+        }
 
-           if(xhr.status==401){
-
-
-
-
-
-               window.location.href="/index";
-
-               return;
-
-           }
-
-           console.log(xhr);
-
-       }
 
 
     })
@@ -252,65 +229,36 @@ function saveUser(){
        console.log($("#gender").val());
        console.log($("#roleid").val());
 
+        callApi({
+
+            url: "http://localhost:8080/api/users",
+
+            type: "POST",
+
+            data: formData,
+
+            contentType: false,
+
+            processData: false,
+
+            success: function(response){
+
+                showToast(
+                    "Success",
+                    "The User is Created Successfully",
+                    "success"
+                );
+
+                clearForm();
+
+                loadUsers();
+
+            }
+
+        });
 
 
 
-    $.ajax({
-        url:"http://localhost:8080/api/users",
-        type:"POST",
-        xhrFields:{
-            withCredentials:true
-        },
-        contentType:false,
-        processData:false,
-        data: formData,
-
-        success:function(response){
-        let message = "The User is Created Successfully"
-             $.toast({
-                 heading: 'Success',
-                 text: message,
-                 position: 'top-right',
-                 icon: 'success'
-             });
-            clearForm();
-
-            loadUsers();
-
-        },
-         error: function(xhr) {
-
-                   let message = "Something went wrong";
-                     if(xhr.status === 400){
-                        message = "Please check the entered details";
-                        }
-
-                     if(xhr.status === 401){
-                       message = "Invalid username or password";
-                       }
-
-                     if(xhr.status === 404){
-                      message = "Record not found";
-                     }
-
-                     if(xhr.status === 500){
-                     message = "Category already exists ";
-                     }
-
-
-                        $.toast({
-                            heading: 'Error',
-                            text: message,
-                            position: 'top-right',
-                            icon: 'error'
-                        });
-
-
-
-                     }
-
-
-    });
 }
 
 function updateUser(id){
@@ -342,47 +290,29 @@ function updateUser(id){
     formData.append("gender", $("#gender").val());
     formData.append("roleid", $("#roleid").val());
 
-    $.ajax({
+    callApi({
 
-        url: "http://localhost:8080/api/users/" + id,
-        type: "PUT",
+        url:"http://localhost:8080/api/users/"+id,
 
-        xhrFields:{
-            withCredentials:true
-        },
+        type:"PUT",
 
-        data: formData,
+        data:formData,
 
         processData:false,
+
         contentType:false,
 
         success:function(response){
 
-            $.toast({
-
-                heading:'Success',
-                text:'User Updated Successfully',
-                position:'top-right',
-                icon:'success'
-
-            });
+            showToast(
+                "Success",
+                "User Updated Successfully",
+                "success"
+            );
 
             clearForm();
 
             loadUsers();
-
-        },
-
-        error:function(xhr){
-
-            $.toast({
-
-                heading:'Error',
-                text:xhr.responseText,
-                position:'top-right',
-                icon:'error'
-
-            });
 
         }
 
@@ -409,47 +339,21 @@ function deleteUser(id){
 
                 action: function(){
 
-                    $.ajax({
+                    callApi({
 
-                        url: "http://localhost:8080/api/users/" + id,
+                        url:"http://localhost:8080/api/users/"+id,
 
-                        type: "DELETE",
-
-                        xhrFields:{
-                            withCredentials:true
-                        },
+                        type:"DELETE",
 
                         success:function(){
 
-                            $.toast({
-
-                                heading:'Success',
-
-                                text:'User Deleted Successfully',
-
-                                position:'top-right',
-
-                                icon:'success'
-
-                            });
+                            showToast(
+                                "Success",
+                                "User Deleted Successfully",
+                                "success"
+                            );
 
                             loadUsers();
-
-                        },
-
-                        error:function(xhr){
-
-                            $.toast({
-
-                                heading:'Error',
-
-                                text:xhr.responseText,
-
-                                position:'top-right',
-
-                                icon:'error'
-
-                            });
 
                         }
 
@@ -475,16 +379,13 @@ function deleteUser(id){
 
 function editUser(id){
 
-    $.ajax({
+   callApi({
 
-        url: "http://localhost:8080/api/users/" + id,
-        type: "GET",
+       url:"http://localhost:8080/api/users/"+id,
 
-        xhrFields:{
-            withCredentials:true
-        },
+       type:"GET",
 
-        success:function(user){
+       success:function(user){
 
             console.log("Editing user:", user);
 
@@ -546,12 +447,13 @@ function editUser(id){
 
             console.log("Edit API error:", xhr);
 
-            $.toast({
-                heading: "Error",
-                text: "Unable to load user details",
-                position: "top-right",
-                icon: "error"
-            });
+              showToast(
+                "Validation",
+                "Unable to load user details",
+                 "error"
+              );
+
+
         }
 
     });
@@ -609,164 +511,164 @@ function validateUser() {
     let emailRegex = /^[a-zA-Z][a-zA-Z0-9._-]*@(gmail|yahoo|outlook|yopmail)\.com$/;
     let contactRegex = /^[6-9][0-9]{9}$/;
 
-    // First Name
+
     if(firstname === ""){
-        $.toast({
-            heading:'Validation',
-            text:'First Name is required',
-            position:'top-right',
-            icon:'error'
-        });
+          showToast(
+            "Validation",
+            "First Name is required",
+            "error"
+             );
+
         $("#firstname").focus();
         return false;
     }
 
     if(firstname.length < 2 || firstname.length > 30){
-        $.toast({
-            heading:'Validation',
-            text:'First Name must be between 2 and 30 characters',
-            position:'top-right',
-            icon:'error'
-        });
+          showToast(
+             "Validation",
+             "First Name can contain min 2 and max 30 chars",
+             "error"
+           );
+
         $("#firstname").focus();
         return false;
     }
 
     if(!nameRegex.test(firstname)){
-        $.toast({
-            heading:'Validation',
-            text:'First Name can contain only letters and spaces',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "First Name can contain only letters and spaces",
+            "error"
+        );
+
         $("#firstname").focus();
         return false;
     }
 
-    // Last Name
+
     if(lastname === ""){
-        $.toast({
-            heading:'Validation',
-            text:'Last Name is required',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Last Name is required",
+            "error"
+        );
+
         $("#lastname").focus();
         return false;
     }
 
     if(lastname.length < 2 || lastname.length > 30){
-        $.toast({
-            heading:'Validation',
-            text:'Last Name must be between 2 and 30 characters',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Last Name must be between 2 and 30 characters",
+            "error"
+        );
+
         $("#lastname").focus();
         return false;
     }
 
     if(!nameRegex.test(lastname)){
-        $.toast({
-            heading:'Validation',
-            text:'Last Name can contain only letters and spaces',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Last Name can contain only letters and spaces",
+            "error"
+        );
+
         $("#lastname").focus();
         return false;
     }
 
-    // Email
+
     if(email === ""){
-        $.toast({
-            heading:'Validation',
-            text:'Email is required',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Email is required",
+            "error"
+        );
+
         $("#email").focus();
         return false;
     }
 
     if(!emailRegex.test(email)){
-        $.toast({
-            heading:'Validation',
-            text:'Enter a valid email address',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Enter a valid email address",
+            "error"
+        );
+
         $("#email").focus();
         return false;
     }
 
-    // Contact Number
+
     if(contact === ""){
-        $.toast({
-            heading:'Validation',
-            text:'Contact Number is required',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Contact Number is required",
+            "error"
+        );
+
         $("#contactno").focus();
         return false;
     }
 
     if(!contactRegex.test(contact)){
-        $.toast({
-            heading:'Validation',
-            text:'Enter a valid 10 digit mobile number',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Enter a valid 10 digit mobile number",
+            "error"
+        );
+
         $("#contactno").focus();
         return false;
     }
 
     // Gender
     if(gender === ""){
-        $.toast({
-            heading:'Validation',
-            text:'Please select Gender',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Please Select Gender",
+            "error"
+        );
+
         $("#gender").focus();
         return false;
     }
 
-    // Role
+
     if(role === ""){
-        $.toast({
-            heading:'Validation',
-            text:'Please select Role',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Please Select Role",
+            "error"
+        );
+
         $("#roleid").focus();
         return false;
     }
 
     // Valid From
     if(validFrom === ""){
-        $.toast({
-            heading:'Validation',
-            text:'Valid From Date is required',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Valid From Date is required",
+            "error"
+        );
+
         $("#valid_from").focus();
         return false;
     }
 
-    // Valid To
+
     if(validTo === ""){
-        $.toast({
-            heading:'Validation',
-            text:'Valid To Date is required',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Valid To Date is required",
+            "error"
+        );
+
         $("#valid_to").focus();
         return false;
     }
@@ -775,12 +677,12 @@ function validateUser() {
     let toDate = new Date(validTo);
 
     if(toDate < fromDate){
-        $.toast({
-            heading:'Validation',
-            text:'Valid To Date cannot be before Valid From Date',
-            position:'top-right',
-            icon:'error'
-        });
+        showToast(
+            "Validation",
+            "Valid To Date cannot be before Valid From Date",
+            "error"
+        );
+
         $("#valid_to").focus();
         return false;
     }

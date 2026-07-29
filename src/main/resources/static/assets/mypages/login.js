@@ -4,22 +4,21 @@ function validateLogin() {
     let password = $('#password').val().trim();
 
     if (email === '') {
-        $.toast({
-            heading: 'Validation',
-            text: 'Email is required',
-            position: 'top-right',
-            icon: 'error'
-        });
+        showToast(
+            "Validation",
+            "Email is Required",
+            "error"
+        );
+
         return false;
     }
 
     if (password === '') {
-        $.toast({
-            heading: 'Validation',
-            text: 'Password is required',
-            position: 'top-right',
-            icon: 'error'
-        });
+    showToast(
+        "Validation",
+        "Password is required",
+        "error"
+    );
         return false;
     }
 
@@ -42,70 +41,34 @@ function login() {
 
     console.log(payload);
 
-    $.ajax({
+    callApi({
 
         url: "/auth/login",
+
         type: "POST",
+
         contentType: "application/json",
-          xhrFields: {
-                withCredentials: true
-            },
 
         data: JSON.stringify(payload),
 
         success: function (response) {
-            console.log("SUCCEESSS COMEBACK");
-            console.log(response);
-            $.toast({
-                    heading: 'Success',
-                    text: 'Login successful',
-                    position: 'top-right',
-                    icon: 'success'
-    });
 
+            showToast(
+                "Success",
+                "Login Successful",
+                "success"
+            );
 
+            setTimeout(function () {
 
-            setTimeout(function() {
+                if (response.role === "ADMIN") {
+                    window.location.href = "/master_form";
+                } else {
+                    window.location.href = "/fill_forms";
+                }
 
-                if(response.role === "ADMIN"){
-                       window.location.href="/master_form";
-                   }else{
-                       window.location.href="/fill_forms";
-                   }
+            }, 1500);
 
-
-
-            },1500);
-
-
-
-        },
-
-        error: function (xhr) {
-
-            let message = "Something went wrong";
-
-            if (xhr.status === 400) {
-                message = "Please check your input.";
-            }
-            else if (xhr.status === 401) {
-                message = "Invalid email or password.";
-            }
-            else if (xhr.status === 404) {
-                message = "API not found.";
-            }
-            else if (xhr.status === 500) {
-                message = "Internal Server Error.";
-            }
-
-            $.toast({
-                heading: 'Error',
-                text: message,
-                position: 'top-right',
-                icon: 'error'
-            });
-
-            console.log(xhr);
         }
 
     });

@@ -71,18 +71,33 @@ public class AuthController {
 
         if (existingSession != null) {
 
+            // If the existing session is still valid, reuse it
             if (existingSession.getExpiryAt().isAfter(java.time.Instant.now())) {
 
-                return ResponseEntity.badRequest()
-                        .body(new LoginResponseDTO(
-                                null,
+                String token = jwtService.generateToken(
+                        customUserDetails,
+                        existingSession.getTokenid()   // use your getter name here
+                );
+
+                Cookie cookie = new Cookie("jwt", token);
+                cookie.setHttpOnly(true);
+                cookie.setSecure(false);
+                cookie.setPath("/");
+                cookie.setMaxAge(60 * 60);
+
+                response.addCookie(cookie);
+
+                return ResponseEntity.ok(
+                        new LoginResponseDTO(
+                                token,
                                 "Bearer",
-                                "User already logged in."
-                        ));
+                                user.getRoleid().getRole()
+                        )
+                );
             }
 
+            // Existing session has expired
             existingSession.setActive(AppConstants.DELETED);
-
             userSessionRepository.save(existingSession);
         }
 

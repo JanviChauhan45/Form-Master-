@@ -447,7 +447,7 @@ $("#searchbtn").click(function(){
     console.log("Toast immediately after loading:", typeof $.toast);
 </script>
 
-
+<script src="assets/mypages/common.js"></script>
 <script src="assets/mypages/master_users.js"></script>
 
 </body>

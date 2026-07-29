@@ -78,6 +78,7 @@
 <script src="assets/custom/plugins/showpassword/hideShowPassword.min.js"></script>
 <script src="assets/login/main.js"></script>
 
+<script src="assets/mypages/common.js"></script>
 <script src="assets/mypages/login.js"></script>
 <script>   
     $('#login').focus();
