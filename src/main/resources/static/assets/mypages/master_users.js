@@ -110,6 +110,10 @@ function loadUsers(){
             $("#userTableBody").empty();
 
             response.forEach(user => {
+//
+//                 if(!validateUser()){
+//                        return;
+//                    }
 
                 let imagePath;
 
@@ -500,19 +504,18 @@ function editUser(id){
             $("#email").prop("readonly", true);
             $("#contactno").val(user.contactno);
 
-            // Dates
             $("#valid_from").val(user.valid_from);
             $("#valid_to").val(user.valid_to);
 
-            // Gender
+
             $("#gender").val(user.gender);
             $("#gender").selectpicker("refresh");
 
-            // Role
+
             $("#roleid").val(user.roleid);
             $("#roleid").selectpicker("refresh");
 
-            // Profile image
+
             if(user.profile_img){
 
                 $("#profilePreview").attr(
@@ -590,6 +593,200 @@ $("#searchbtn").click(function () {
     table.search(name).draw();
 
 });
+
+function validateUser() {
+
+    let firstname = $("#firstname").val().trim();
+    let lastname = $("#lastname").val().trim();
+    let email = $("#email").val().trim();
+    let contact = $("#contactno").val().trim();
+    let gender = $("#gender").val();
+    let role = $("#roleid").val();
+    let validFrom = $("#valid_from").val();
+    let validTo = $("#valid_to").val();
+
+    let nameRegex = /^[A-Za-z ]+$/;
+    let emailRegex = /^[a-zA-Z][a-zA-Z0-9._-]*@(gmail|yahoo|outlook|yopmail)\.com$/;
+    let contactRegex = /^[6-9][0-9]{9}$/;
+
+    // First Name
+    if(firstname === ""){
+        $.toast({
+            heading:'Validation',
+            text:'First Name is required',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#firstname").focus();
+        return false;
+    }
+
+    if(firstname.length < 2 || firstname.length > 30){
+        $.toast({
+            heading:'Validation',
+            text:'First Name must be between 2 and 30 characters',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#firstname").focus();
+        return false;
+    }
+
+    if(!nameRegex.test(firstname)){
+        $.toast({
+            heading:'Validation',
+            text:'First Name can contain only letters and spaces',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#firstname").focus();
+        return false;
+    }
+
+    // Last Name
+    if(lastname === ""){
+        $.toast({
+            heading:'Validation',
+            text:'Last Name is required',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#lastname").focus();
+        return false;
+    }
+
+    if(lastname.length < 2 || lastname.length > 30){
+        $.toast({
+            heading:'Validation',
+            text:'Last Name must be between 2 and 30 characters',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#lastname").focus();
+        return false;
+    }
+
+    if(!nameRegex.test(lastname)){
+        $.toast({
+            heading:'Validation',
+            text:'Last Name can contain only letters and spaces',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#lastname").focus();
+        return false;
+    }
+
+    // Email
+    if(email === ""){
+        $.toast({
+            heading:'Validation',
+            text:'Email is required',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#email").focus();
+        return false;
+    }
+
+    if(!emailRegex.test(email)){
+        $.toast({
+            heading:'Validation',
+            text:'Enter a valid email address',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#email").focus();
+        return false;
+    }
+
+    // Contact Number
+    if(contact === ""){
+        $.toast({
+            heading:'Validation',
+            text:'Contact Number is required',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#contactno").focus();
+        return false;
+    }
+
+    if(!contactRegex.test(contact)){
+        $.toast({
+            heading:'Validation',
+            text:'Enter a valid 10 digit mobile number',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#contactno").focus();
+        return false;
+    }
+
+    // Gender
+    if(gender === ""){
+        $.toast({
+            heading:'Validation',
+            text:'Please select Gender',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#gender").focus();
+        return false;
+    }
+
+    // Role
+    if(role === ""){
+        $.toast({
+            heading:'Validation',
+            text:'Please select Role',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#roleid").focus();
+        return false;
+    }
+
+    // Valid From
+    if(validFrom === ""){
+        $.toast({
+            heading:'Validation',
+            text:'Valid From Date is required',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#valid_from").focus();
+        return false;
+    }
+
+    // Valid To
+    if(validTo === ""){
+        $.toast({
+            heading:'Validation',
+            text:'Valid To Date is required',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#valid_to").focus();
+        return false;
+    }
+
+    let fromDate = new Date(validFrom);
+    let toDate = new Date(validTo);
+
+    if(toDate < fromDate){
+        $.toast({
+            heading:'Validation',
+            text:'Valid To Date cannot be before Valid From Date',
+            position:'top-right',
+            icon:'error'
+        });
+        $("#valid_to").focus();
+        return false;
+    }
+
+    return true;
+}
 
 
 

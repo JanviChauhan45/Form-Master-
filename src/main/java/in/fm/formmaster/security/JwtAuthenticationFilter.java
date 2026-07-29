@@ -82,7 +82,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                             )
                             .orElse(null);
 
-            // No active session found
+
             if (session == null) {
 
                 System.out.println("JWT session does not exist or is inactive.");
@@ -107,11 +107,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 return;
             }
 
-            System.out.println("========================");
-            System.out.println("Email = " + email);
-            System.out.println("Token ID = " + tokenId);
-            System.out.println("Session Exists = true");
-            System.out.println("========================");
+
 
             if (email != null
                     && SecurityContextHolder.getContext().getAuthentication() == null) {

@@ -5,6 +5,8 @@ import in.fm.formmaster.Role.Role;
 import in.fm.formmaster.Role.RoleRepository;
 import in.fm.formmaster.constants.AppConstants;
 import in.fm.formmaster.constants.Gender;
+import in.fm.formmaster.exception.BadRequest;
+import in.fm.formmaster.exception.ResourceAlreadyExists;
 import in.fm.formmaster.exception.ResourceNotFound;
 import in.fm.formmaster.mail_service.EmailService;
 import in.fm.formmaster.mail_service.MailDetailsDTO;
@@ -156,8 +158,13 @@ public class UserServiceImpl implements UserService {
            System.out.println("Role: " + dto.getRoleid());
 
            return dto;
-       }catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+       } catch (ResourceAlreadyExists |
+                ResourceNotFound |
+                BadRequest e) {
+            throw e;
+       }
+       catch (Exception e){
+           throw new RuntimeException(e);
        }
     }
 
@@ -165,7 +172,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO getUserById(Long id) {
 
         try{
-            User user =repo.findById(id).get();
+            User user =repo.findById(id).orElseThrow(() ->  new ResourceNotFound("Id Not Found"));
 
             UserDTO dto = new UserDTO();
             dto.setId(user.getId());
@@ -252,8 +259,12 @@ public class UserServiceImpl implements UserService {
         }
         return userDTOList;
 
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e.getMessage());
+        } catch (ResourceNotFound e) {
+
+            throw e;
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
         }
 
     }
@@ -267,10 +278,7 @@ public class UserServiceImpl implements UserService {
                     .orElseThrow(() ->
                             new ResourceNotFound("User not found"));
 
-            // Soft Delete
 
-
-            // Audit Fields
             user.setModifiedOn(LocalDateTime.now());
 
             User loggedInUser = getLoggedInUser();
@@ -288,10 +296,17 @@ public class UserServiceImpl implements UserService {
             repo.save(user);
 
 
-
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e.getMessage());
         }
+        catch (ResourceNotFound e) {
+
+                throw e;
+
+            }
+    catch (Exception e) {
+
+                throw new RuntimeException(e.getMessage(), e);
+
+            }
     }
 
     @Override
@@ -299,29 +314,29 @@ public class UserServiceImpl implements UserService {
 
         try {
 
-            // Find Existing User
+
             User user = repo.findById(id)
                     .orElseThrow(() -> new ResourceNotFound("User not found"));
 
-            // Update Basic Details
+
             user.setFirstname(userDTO.getFirstname());
             user.setLastname(userDTO.getLastname());
             user.setEmail(userDTO.getEmail());
             user.setContactno(userDTO.getContactno());
             user.setGender(userDTO.getGender());
 
-            // Update Role
+
             Role role = roleRepo.findById(userDTO.getRoleid())
                     .orElseThrow(() -> new ResourceNotFound("Role not found"));
 
             user.setRoleid(role);
 
-            // Update Password (Only if user entered a new password)
+
             if (userDTO.getPassword() != null && !userDTO.getPassword().isBlank()) {
                 user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             }
 
-            // Update Valid Dates
+
             LocalDate validFrom = LocalDate.parse(userDTO.getValid_from(), formatter);
             LocalDate validTo = LocalDate.parse(userDTO.getValid_to(), formatter);
 
@@ -333,7 +348,7 @@ public class UserServiceImpl implements UserService {
                     Timestamp.valueOf(validTo.atStartOfDay())
             );
 
-            // Update Profile Image
+
             if (userDTO.getImage() != null && !userDTO.getImage().isEmpty()) {
 
                 String uploadDir = "E:/upload/";
@@ -358,14 +373,14 @@ public class UserServiceImpl implements UserService {
                 user.setProfile_img(filename);
             }
 
-            // Audit Fields
+
             user.setModifiedBy(userDTO.getModifiedBy());
             user.setModifiedOn(LocalDateTime.now(ZoneId.systemDefault()));
 
-            // Save User
+
             repo.save(user);
 
-            // Prepare Response DTO
+
             UserDTO dto = new UserDTO();
 
             dto.setId(user.getId());
@@ -402,31 +417,39 @@ public class UserServiceImpl implements UserService {
             dto.setModifiedOn(user.getModifiedOn());
 
             return dto;
-
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e.getMessage());
         }
+       catch (ResourceNotFound |
+                    ResourceAlreadyExists |
+                    BadRequest e) {
+
+                throw e;
+
+            }
+    catch (Exception e) {
+
+                throw new RuntimeException(e.getMessage(), e);
+
+            }
     }
 
     private User getLoggedInUser() {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        Authentication authentication =
-                SecurityContextHolder
-                        .getContext()
-                        .getAuthentication();
+            String email = authentication.getName();
 
-        String email = authentication.getName();
+            return repo.findByEmail(email).orElseThrow(() -> new ResourceNotFound("Logged in user not found"));
+        } catch (ResourceNotFound e) {
 
-        return repo.findByEmail(email)
-                .orElseThrow(() ->
-                        new ResourceNotFound(
-                                "Logged in user not found"
-                        )
-                );
+            throw e;
+
+        }
+        catch (Exception e) {
+
+            throw new RuntimeException(e.getMessage(), e);
+
+        }
     }
 
-//    @Override
-//    public UserDTO getAllGenders() {
-//        repo.getA
-//    }
+
 }

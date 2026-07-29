@@ -54,7 +54,7 @@ public class SecurityConfig {
                                         "/assets/**",
                                         "/multipart/form-data",
                                         "/uploads/**"
-//                                        "/index"
+
                                 ).permitAll()
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .requestMatchers("/api/**").hasRole("ADMIN")
@@ -64,7 +64,7 @@ public class SecurityConfig {
                         .requestMatchers("/profile").authenticated()
 
 
-                        // We'll add these later
+
                         //.requestMatchers("/admin/**").hasRole("ADMIN")
                         //.requestMatchers("/user/**").hasAnyRole("ADMIN","USER")
 

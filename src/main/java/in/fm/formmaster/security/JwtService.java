@@ -35,10 +35,7 @@ public class JwtService {
         return Jwts.builder()
                 .claims(claims)
                 .subject(userDetails.getUsername())
-
-
                 .id(tokenId)
-
                 .issuedAt(new Date())
                 .expiration(
                         new Date(

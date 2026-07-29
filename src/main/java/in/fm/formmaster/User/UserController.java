@@ -2,6 +2,7 @@ package in.fm.formmaster.User;
 
 import in.fm.formmaster.constants.Gender;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -24,10 +25,7 @@ public class UserController {
 
     }
 
-//    @GetMapping("/genders")
-//    public ResponseEntity<Gender[]> getGenders() {
-//        return ResponseEntity.ok(userService.getAllGenders());
-//    }
+
 
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<?> createUser(@Valid @ModelAttribute UserDTO userDTO) {
@@ -61,7 +59,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<?> deleteUser( @Valid @PathVariable Long id) {
         try{
            userService.deleteUser(id);
             return ResponseEntity.status(HttpStatus.OK).body("User deleted successfully");
@@ -72,7 +70,7 @@ public class UserController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUser(@PathVariable Long id){
+    public ResponseEntity<?> getUser( @Valid @PathVariable Long id){
         try{
             userService.getUserById(id);
             return ResponseEntity.ok().body(userService.getUserById(id));
