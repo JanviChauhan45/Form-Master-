@@ -115,6 +115,18 @@ function loadUsers(){
                 }else{
                     imagePath = "assets/images/users/default_user.png";
                 }
+
+                let genderText =
+                    user.gender == 1 ? "Male" :
+                    user.gender == 2 ? "Female" : "-";
+
+                let roleText =
+                    user.roleid == 1 ? "Admin" :
+                    user.roleid == 2 ? "User" : "-";
+
+                let activeText =
+                    user.active == 1 ? "Yes" : "No" ;
+
                 let row =`
                     <tr>
                          <td>
@@ -143,19 +155,20 @@ function loadUsers(){
                                             class="img-radius avatar"
                                             style="object-fit:cover; border-radius:50%;"
                                         >
+                                        </a>
 
                                         ${user.firstname} ${user.lastname}
 
-                                    </a>
+
                                 </h2>
                             </td>
                         <td>${user.email}</td>
                         <td>${user.contactno}</td>
                         <td>${user.valid_from}</td>
                         <td>${user.valid_to}</td>
-                        <td>${user.gender}</td>
-                        <td>${user.roleid}</td>
-                        <td>${user.active}</td>
+                        <td>${genderText}</td>
+                        <td>${roleText}</td>
+                        <td>${activeText}</td>
                         <td class="text-center">
 
                             <a href="javascript:void(0)"
@@ -203,6 +216,10 @@ function loadUsers(){
 
 function saveUser(){
 
+         if (!validateUser()) {
+                return;
+         }
+
 
        let imageFile = $('#profile_img')[0].files[0];
         let formData = new FormData();
@@ -226,8 +243,7 @@ function saveUser(){
         }
         formData.append("gender", $("#gender").val());
         formData.append("roleid", $("#roleid").val());
-       console.log($("#gender").val());
-       console.log($("#roleid").val());
+
 
         callApi({
 
@@ -250,6 +266,8 @@ function saveUser(){
                 );
 
                 clearForm();
+                 $("#portfolio_add_detail").hide();
+                 $("#portfolio_details").show();
 
                 loadUsers();
 
@@ -262,6 +280,9 @@ function saveUser(){
 }
 
 function updateUser(id){
+        if (!validateUser()) {
+                    return;
+             }
 
     let imageFile = $("#profile_img")[0].files[0];
 
@@ -310,9 +331,11 @@ function updateUser(id){
                 "success"
             );
 
-            clearForm();
+             clearForm();
+              $("#portfolio_add_detail").hide();
+              $("#portfolio_details").show();
 
-            loadUsers();
+              loadUsers();
 
         }
 
@@ -491,12 +514,40 @@ $("#searchbtn").click(function () {
     let table = $("#users_datatable").DataTable();
 
     let name = $("#searchName").val();
+    let role = $("#searchRole option:selected").text().trim();
 
-    table.search(name).draw();
+    table.column(0).search(name);
+
+    if(role == "All Roles" || role == "Select"){
+        table.column(6).search("");
+
+    }else {
+        table.column(6).search(role);
+
+    }
+
+    table.draw();
+
+
+
+});
+
+$("#resetbtn").click(function (){
+    let table = $("#users_datatable").DataTable();
+    $("#searchName").val("");
+
+    $("#searchRole").val("");
+    $("#searchRole").selectpicker("refresh");
+
+    table.search("");
+    table.column().search("");
+
+    table.draw();
 
 });
 
 function validateUser() {
+
 
     let firstname = $("#firstname").val().trim();
     let lastname = $("#lastname").val().trim();
@@ -509,7 +560,7 @@ function validateUser() {
 
     let nameRegex = /^[A-Za-z ]+$/;
     let emailRegex = /^[a-zA-Z][a-zA-Z0-9._-]*@(gmail|yahoo|outlook|yopmail)\.com$/;
-    let contactRegex = /^[6-9][0-9]{9}$/;
+    let contactRegex = /^[0-9][0-9]{9}$/;
 
 
     if(firstname === ""){
@@ -625,7 +676,7 @@ function validateUser() {
         return false;
     }
 
-    // Gender
+
     if(gender === ""){
         showToast(
             "Validation",
@@ -649,18 +700,15 @@ function validateUser() {
         return false;
     }
 
-    // Valid From
     if(validFrom === ""){
         showToast(
             "Validation",
             "Valid From Date is required",
             "error"
         );
-
         $("#valid_from").focus();
         return false;
     }
-
 
     if(validTo === ""){
         showToast(
@@ -668,22 +716,70 @@ function validateUser() {
             "Valid To Date is required",
             "error"
         );
-
         $("#valid_to").focus();
         return false;
     }
 
-    let fromDate = new Date(validFrom);
-    let toDate = new Date(validTo);
+    function parseDate(dateString){
 
-    if(toDate < fromDate){
+        let parts = dateString.split("/");
+
+        return new Date(
+            parts[2],
+            parts[1]-1,
+            parts[0]
+        );
+
+    }
+
+    let fromDate = parseDate(validFrom);
+    let toDate = parseDate(validTo);
+
+    let today = new Date();
+    today.setHours(0,0,0,0);
+
+
+    if(fromDate > today){
+
         showToast(
             "Validation",
-            "Valid To Date cannot be before Valid From Date",
+            "Valid From cannot be a future date",
+            "error"
+        );
+
+        $("#valid_from").focus();
+
+        return false;
+    }
+
+
+    if(toDate < fromDate){
+
+        showToast(
+            "Validation",
+            "Valid To cannot be before Valid From",
             "error"
         );
 
         $("#valid_to").focus();
+
+        return false;
+    }
+
+
+    let diffDays =
+        Math.floor((toDate - fromDate) / (1000 * 60 * 60 * 24));
+
+    if(diffDays < 10){
+
+        showToast(
+            "Validation",
+            "Valid To must be at least 10 days after Valid From",
+            "error"
+        );
+
+        $("#valid_to").focus();
+
         return false;
     }
 

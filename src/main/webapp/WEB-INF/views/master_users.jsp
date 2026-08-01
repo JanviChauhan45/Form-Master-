@@ -130,7 +130,7 @@
                                             <div class="form-group mb-0">
                                             <a class="save_form_details btn btn-success text-white btn-padding" id="searchbtn"><i class="fa fa-search mr-2"></i>Search</a>
                                                 
-                                            <a class="show-details-table btn btn-danger text-white btn-padding ml-1"><i class="fa fa-refresh mr-2"></i>Reset</a>
+                                            <a id="resetbtn" class="show-details-table btn btn-danger text-white btn-padding ml-1"><i class="fa fa-refresh mr-2"></i>Reset</a>
                                             </div>
                                         </div>
                                     </div>
@@ -206,7 +206,7 @@
 
                                 <div class="btn btn-success text-white btn-padding mt-2" style="position: relative; overflow: hidden;">
                                     <i class="fa fa-upload mr-2"></i> Upload
-                                    <input type="file" id="profile_img" name="image" style="opacity: 0; right: 0; position: absolute;">
+                                    <input type="file" id="profile_img" name="image" style="opacity: 0; right: 0; position: absolute;" accept=".jpg,.jpeg,.png,.webp">
                                 </div>
 
                                 <div class="btn btn-success text-white btn-padding mt-2 ml-1" onclick="removeImage()" >
@@ -225,14 +225,14 @@
                                     <div class="col-xl-3 col-lg-4 col-sm-4 col-xs-12 colmspadding">
                                         <div class="form-group">
                                             <label>First Name<span class="text-danger ml-1">*</span></label>
-                                            <input type="text" class="form-control" id ="firstname">
+                                            <input type="text" class="form-control" id ="firstname" maxlength="30" oninput="this.value=this.value.replace(/[^a-zA-Z ]/g,'')">
                                         </div>
                                     </div>
                 
                                     <div class="col-xl-3 col-lg-4 col-sm-4 col-xs-12 colmspadding">
                                         <div class="form-group">
                                             <label>Last Name<span class="text-danger ml-1">*</span></label>
-                                            <input type="text" class="form-control" id = "lastname">
+                                            <input type="text" class="form-control" id = "lastname" maxlength="30" oninput="this.value=this.value.replace(/[^a-zA-Z ]/g,'')">
                                         </div>
                                     </div>
                                 </div>
@@ -248,7 +248,7 @@
                                     <div class="col-xl-2 col-lg-4 col-sm-4 col-xs-12 colmspadding">
                                         <div class="form-group">
                                             <label>Contact No.</label>
-                                            <input type="text" class="form-control text-right" id="contactno">
+                                            <input type="text" class="form-control text-right" id="contactno"  maxlength="10"  oninput="this.value=this.value.replace(/[^0-9]/g,'')">
                                         </div>
                                     </div>
 
@@ -271,7 +271,7 @@
                                                 <div class="form-group mb-0">
                                                     <label>Valid From</label>
                                                     <div class="input-group date">
-                                                        <input type="text" class="form-control" placeholder="dd/mm/yyyy" id="valid_from">
+                                                        <input type="text" class="form-control" placeholder="dd/mm/yyyy"  id="valid_from" placeholder="Select Date" readonly >
                                                         <span class="input-group-addon inputgroups">
                                                             <i class="mdi mdi-calendar"></i>
                                                         </span>
@@ -282,7 +282,7 @@
                                                 <div class="form-group mb-0">
                                                     <label>Valid To</label>
                                                     <div class="input-group date">
-                                                        <input type="text" class="form-control" placeholder="dd/mm/yyyy" id="valid_to">
+                                                        <input type="text" class="form-control" placeholder="dd/mm/yyyy" id="valid_to" placeholder="Select Date" readonly>
                                                         <span class="input-group-addon inputgroups">
                                                             <i class="mdi mdi-calendar"></i>
                                                         </span>
@@ -320,7 +320,7 @@
                         <div class="text-center border-top mt-1 pt-2 mb-2">
 
                             <a id="saveBtn"
-                               class="save_port_details btn btn-success text-white btn-padding"
+                               class="save_form_details btn btn-success text-white btn-padding"
                                onclick="saveUser()">
 
                                 <i class="fa fa-floppy-o mr-2"></i>

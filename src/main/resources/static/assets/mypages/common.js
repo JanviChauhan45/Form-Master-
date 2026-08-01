@@ -29,6 +29,7 @@ function handleAjaxError(xhr){
 
         case 403:
             message = "Access Denied. Please login again.";
+            alert("403 detected");
 
             showToast(
                 "Access Denied",
