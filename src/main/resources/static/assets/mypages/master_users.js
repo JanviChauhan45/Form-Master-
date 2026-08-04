@@ -12,6 +12,13 @@ $(".client_add_btn").click(function () {
     $("#portfolio_details").hide();
     $("#portfolio_add_detail").show();
 
+    $("#portfolio_add_detail .card-header h5").text("Add Users");
+
+    $("#saveBtn")
+        .attr("onclick", "saveUser()");
+
+    $("#saveBtnText").text("Save");
+
 });
 
 $("#profile_img").on("change", function () {
@@ -506,6 +513,12 @@ function clearForm(){
 
     $("#roleid").val("");
     $("#roleid").selectpicker("refresh");
+    $("#saveBtn")
+        .attr("onclick", "saveUser()");
+
+    $("#saveBtnText").text("Save");
+
+    $("#portfolio_add_detail .card-header h5").text("Add Users");
 
 }
 

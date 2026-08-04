@@ -11,6 +11,7 @@ import in.fm.formmaster.exception.ResourceNotFound;
 import in.fm.formmaster.mail_service.EmailService;
 import in.fm.formmaster.mail_service.MailDetailsDTO;
 import in.fm.formmaster.utility.PasswordGenerator;
+import in.fm.formmaster.utility.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -103,10 +104,12 @@ public class UserServiceImpl implements UserService {
           // user.setProfile_img(userDTO.getProfile_img());
            System.out.println(user.getProfile_img());
 
+           User loggedInUser = SecurityUtils.getLoggedInUser();
+           user.setCreatedBy(loggedInUser);
+           user.setModifiedBy(loggedInUser);
 
-           user.setCreatedBy(userDTO.getCreatedBy());
            user.setCreatedOn(userDTO.getCreatedOn());
-           user.setModifiedBy(userDTO.getModifiedBy());
+
            user.setModifiedOn(userDTO.getModifiedOn());
            user.setIpAddress(user.getIpAddress());
            repo.save(user);
@@ -124,6 +127,10 @@ public class UserServiceImpl implements UserService {
            );
            mailDTO.setAttachment(null);
            emailService.sendSimpleMail(mailDTO);
+           System.out.println("========== SENDING MAIL ==========");
+           System.out.println("Recipient : " + mailDTO.getRecipient());
+           System.out.println("Subject   : " + mailDTO.getSubject());
+           System.out.println("Content   : " + mailDTO.getContent());
 
             UserDTO dto = new  UserDTO();
             dto.setId(user.getId());
@@ -322,6 +329,8 @@ public class UserServiceImpl implements UserService {
             user.setFirstname(userDTO.getFirstname());
             user.setLastname(userDTO.getLastname());
             user.setEmail(userDTO.getEmail());
+            System.out.println("DB Email      : " + user.getEmail());
+            System.out.println("DTO Email     : " + userDTO.getEmail());
             user.setContactno(userDTO.getContactno());
             user.setGender(userDTO.getGender());
 
@@ -376,9 +385,17 @@ public class UserServiceImpl implements UserService {
 
             user.setModifiedBy(userDTO.getModifiedBy());
             user.setModifiedOn(LocalDateTime.now(ZoneId.systemDefault()));
+            System.out.println("============ BEFORE SAVE ============");
+            System.out.println("ID       : " + user.getId());
+            System.out.println("Email    : " + user.getEmail());
+            System.out.println("Firstname: " + user.getFirstname());
+            System.out.println("Lastname : " + user.getLastname());
 
 
             repo.save(user);
+            System.out.println("============ AFTER SAVE ============");
+            System.out.println(user.getId());
+            System.out.println(user.getEmail());
 
 
             UserDTO dto = new UserDTO();
