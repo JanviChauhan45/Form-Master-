@@ -1,4 +1,4 @@
-package in.fm.formmaster.Others;
+package in.fm.formmaster.Month;
 
 import in.fm.formmaster.User.User;
 import in.fm.formmaster.constants.AppConstants;
@@ -48,6 +48,10 @@ public class Month {
     @PrePersist
     public void prePersist() {
         createdOn = LocalDateTime.now();
+        modifiedOn = LocalDateTime.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
         modifiedOn = LocalDateTime.now();
     }
 }

@@ -7,4 +7,5 @@ public interface ModuleService {
     ModuleDTO updateModule(ModuleDTO moduleDTO);
     ModuleDTO deleteModule(Long id);
     List<ModuleDTO> getAllModules();
+    ModuleDTO getModuleById(Long id);
 }

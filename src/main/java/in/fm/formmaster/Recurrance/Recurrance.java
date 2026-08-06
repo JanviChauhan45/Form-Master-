@@ -1,4 +1,4 @@
-package in.fm.formmaster.Others;
+package in.fm.formmaster.Recurrance;
 
 import in.fm.formmaster.User.User;
 import in.fm.formmaster.constants.AppConstants;
@@ -15,18 +15,17 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="mst_characteristics")
-public class Characteristics {
+@Table(name = "mst_Recurrance")
+public class Recurrance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private String name;
+    private String recurranceName;
 
     @Column
     private Integer active = AppConstants.ACTIVE;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by")
@@ -51,6 +50,4 @@ public class Characteristics {
         createdOn = LocalDateTime.now();
         modifiedOn = LocalDateTime.now();
     }
-    
-
 }

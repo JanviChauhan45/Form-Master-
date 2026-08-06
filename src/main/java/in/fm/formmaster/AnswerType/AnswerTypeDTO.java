@@ -1,6 +1,5 @@
-package in.fm.formmaster.Module;
+package in.fm.formmaster.AnswerType;
 
-import in.fm.formmaster.User.User;
 import in.fm.formmaster.User.UserSummaryDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,11 +10,11 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ModuleDTO {
+public class AnswerTypeDTO {
     private Long id;
-    private String moduleName;
-    private String moduleShortName;
-    private Integer  active ;
+    private String answerTypename;
+    private Integer active;
+    private Integer validate;
     private UserSummaryDTO createdBy;
     private UserSummaryDTO modifiedBy;
     private LocalDateTime createdOn;

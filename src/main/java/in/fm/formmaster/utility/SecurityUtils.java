@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityUtils {
 
-    public static User getLoggedInUser() {
+    public static User getLoggedInUser(){
 
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
@@ -19,4 +19,5 @@ public class SecurityUtils {
 
         return userDetails.getUser();
     }
+
 }

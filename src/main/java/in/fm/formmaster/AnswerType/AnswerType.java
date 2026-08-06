@@ -1,6 +1,7 @@
-package in.fm.formmaster.Others;
+package in.fm.formmaster.AnswerType;
 
 import in.fm.formmaster.User.User;
+import in.fm.formmaster.constants.AnsTypeConstant;
 import in.fm.formmaster.constants.AppConstants;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,9 @@ public class AnswerType {
 
     @Column
     private Integer active = AppConstants.ACTIVE;
+
+    @Column
+    private Integer validate = AnsTypeConstant.INVALID;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by")
