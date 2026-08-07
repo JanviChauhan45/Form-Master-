@@ -42,4 +42,11 @@ public class ModuleCharController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/module/{moduleId}")
+    public ResponseEntity<List<ModuleCharacterMappingDTO>> getByModule(
+            @PathVariable Long moduleId) {
+
+        return ResponseEntity.ok(service.getByModule(moduleId));
+    }
 }

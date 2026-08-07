@@ -51,6 +51,8 @@ public class ModuleCharServiceImpl implements ModuleCharService{
         savedDTO.setId(saved.getId());
         savedDTO.setCharacteristicsId(saved.getCharacteristicId().getId());
         savedDTO.setModuleId(saved.getModuleId().getId());
+        savedDTO.setModuleName(saved.getModuleId().getModuleName());
+        savedDTO.setCharacteristicsName(saved.getCharacteristicId().getName());
         savedDTO.setActive(saved.getActive());
         savedDTO.setCreatedBy(UserMapper.toSummaryDTO(saved.getCreatedBy()));
         savedDTO.setModifiedBy(UserMapper.toSummaryDTO(saved.getModifiedBy()));
@@ -77,8 +79,8 @@ public class ModuleCharServiceImpl implements ModuleCharService{
         return list.stream().map(li -> {
            ModuleCharacterMappingDTO dto = new ModuleCharacterMappingDTO();
            dto.setId(li.getId());
-           dto.setCharacteristicsId(li.getCharacteristicId().getId());
-           dto.setModuleId(li.getModuleId().getId());
+            dto.setModuleName(li.getModuleId().getModuleName());
+            dto.setCharacteristicsName(li.getCharacteristicId().getName());
            dto.setCreatedBy(UserMapper.toSummaryDTO(li.getCreatedBy()));
            dto.setModifiedBy(UserMapper.toSummaryDTO(li.getModifiedBy()));
            dto.setCreatedOn(li.getCreatedOn());
@@ -106,5 +108,28 @@ public class ModuleCharServiceImpl implements ModuleCharService{
             throw new IllegalArgumentException(e);
         }
 
+    }
+
+    @Override
+    public List<ModuleCharacterMappingDTO> getByModule(Long moduleId) {
+
+        List<ModuleCharacteristicsMapping> list =
+                repo.findByModuleId_IdAndActive(moduleId, AppConstants.ACTIVE);
+
+        return list.stream().map(li -> {
+
+            ModuleCharacterMappingDTO dto = new ModuleCharacterMappingDTO();
+
+            dto.setId(li.getId());
+
+            dto.setModuleId(li.getModuleId().getId());
+            dto.setModuleName(li.getModuleId().getModuleName());
+
+            dto.setCharacteristicsId(li.getCharacteristicId().getId());
+            dto.setCharacteristicsName(li.getCharacteristicId().getName());
+
+            return dto;
+
+        }).toList();
     }
 }

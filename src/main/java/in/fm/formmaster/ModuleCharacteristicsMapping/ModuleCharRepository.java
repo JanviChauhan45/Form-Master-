@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface ModuleCharRepository extends JpaRepository<ModuleCharacteristicsMapping,Long> {
     Optional<ModuleCharacteristicsMapping> findById(Long id);
     List<ModuleCharacteristicsMapping> findByActiveNot(Integer active);
-
+    List<ModuleCharacteristicsMapping> findByModuleId_IdAndActive(Long moduleId, Integer active);
 
 }

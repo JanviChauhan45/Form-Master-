@@ -9,5 +9,6 @@ public interface ModuleCharService {
     String delete(ModuleCharacterMappingDTO moduleCharacterMappingDTO);
     List<ModuleCharacterMappingDTO> getAll();
     ModuleCharacterMappingDTO getOne(Long id);
+    public List<ModuleCharacterMappingDTO> getByModule(Long moduleId);
 
 }

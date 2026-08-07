@@ -302,7 +302,7 @@
 										<div class="col-xl-2 col-lg-3 col-sm-4 col-xs-12 colmspadding">
                                                 <div class="form-group">
                                                     <label>Module <span class="text-danger">*</span></label>
-                                                    <select class="selectpicker" data-style="lineheight12 bg-transfer"
+                                                    <select id="moduleId" class="selectpicker" data-style="lineheight12 bg-transfer"
                                                         data-live-search="true">
                                                         <option value="" selected="selected">Select</option>
                                                         <option value="1">HASCheck</option>
@@ -315,7 +315,7 @@
                                             <div class="col-xl-2 col-lg-3 col-sm-4 col-xs-12 colmspadding">
                                                 <div class="form-group">
                                                     <label>Characteristic <span class="text-danger">*</span></label>
-                                                    <select class="selectpicker" data-style="lineheight12 bg-transfer"
+                                                    <select id="characteristicsId" class="selectpicker" data-style="lineheight12 bg-transfer"
                                                         data-live-search="true">
                                                         <option value="" selected="selected">Select</option>
                                                         <option value="1">Aboveground Storage Tanks</option>
@@ -1307,6 +1307,8 @@
     <script src="assets/custom/plugins/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
 
     <script src="assets/custom/js/commonmodal.js"></script>
+    <script src="assets/mypages/common.js"></script>
+    <script src="assets/mypages/create_form.js"></script>
 
     <script>
         $(function () {
