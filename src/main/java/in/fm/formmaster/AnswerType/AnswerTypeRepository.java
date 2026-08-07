@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface AnswerTypeRepository extends JpaRepository<AnswerType, Long> {
     Optional<AnswerType> findById(Long id);
-    boolean existsByAnswerTypeName(String answerTypeName);
+    boolean existsByAnswerTypename(String answerTypename);
     List<AnswerType>findByActiveNot(Integer active);
 }

@@ -5,6 +5,7 @@ import in.fm.formmaster.User.UserMapper;
 import in.fm.formmaster.constants.AnsTypeConstant;
 import in.fm.formmaster.constants.AppConstants;
 import in.fm.formmaster.exception.ResourceAlreadyExists;
+import in.fm.formmaster.exception.ResourceNotFound;
 import in.fm.formmaster.utility.RequestUtils;
 import in.fm.formmaster.utility.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class AnswerTypeServiceImpl implements AnswerTypeService {
 
     @Override
     public AnswerTypeDTO save(AnswerTypeDTO dto) {
-        if(repo.existsByAnswerTypeName(dto.getAnswerTypename())){
+        if(repo.existsByAnswerTypename(dto.getAnswerTypename())){
             throw new ResourceAlreadyExists("Answer Type Name Already Exists");
         }
         User loggedInUser = SecurityUtils.getLoggedInUser();
@@ -66,7 +67,7 @@ public class AnswerTypeServiceImpl implements AnswerTypeService {
         answerTypeDTO.setModifiedOn(saved.getModifiedOn());
 
 
-        return null;
+        return answerTypeDTO;
     }
 
     @Override
@@ -75,12 +76,27 @@ public class AnswerTypeServiceImpl implements AnswerTypeService {
     }
 
     @Override
-    public String delete(Integer id) {
+    public String delete(Long id) {
         return "";
     }
 
     @Override
-    public AnswerTypeDTO get(Integer id) {
-        return null;
+    public AnswerTypeDTO get(Long id) {
+        try{
+            AnswerType ans = repo.findById(id).orElseThrow( ()-> new ResourceNotFound("Id not Found"));
+            AnswerTypeDTO dto = new AnswerTypeDTO();
+            dto.setId(ans.getId());
+            dto.setAnswerTypename(ans.getAnswerTypename());
+            dto.setActive(ans.getActive());
+            dto.setValidate(ans.getValidate());
+            dto.setCreatedOn(ans.getCreatedOn());
+            dto.setModifiedOn(ans.getModifiedOn());
+            dto.setCreatedBy(UserMapper.toSummaryDTO(ans.getCreatedBy()));
+            dto.setModifiedBy(UserMapper.toSummaryDTO(ans.getModifiedBy()));
+            return dto;
+        }catch(Exception e){
+            throw new IllegalArgumentException(e);
+        }
+
     }
 }

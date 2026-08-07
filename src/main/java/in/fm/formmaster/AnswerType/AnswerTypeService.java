@@ -6,7 +6,7 @@ public interface AnswerTypeService {
     List<AnswerTypeDTO> getAll();
     AnswerTypeDTO save(AnswerTypeDTO dto);
     AnswerTypeDTO update(AnswerTypeDTO dto);
-    String delete(Integer id);
-    AnswerTypeDTO get(Integer id);
+    String delete(Long id);
+    AnswerTypeDTO get(Long id);
 
 }

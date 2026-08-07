@@ -28,7 +28,7 @@ public class CharacteristicsServiceImpl implements CharacteristicsService {
             charc.setName(dto.getName());
             charc.setActive(AppConstants.ACTIVE);
             charc.setCreatedBy(loggedInUser);
-            charc.setModifiedBy(loggedInUser);
+            //charc.setModifiedBy(loggedInUser);
             charc.setIpAddress(RequestUtils.getIpAddress());
 
             Characteristics saved = repo.save(charc);
@@ -37,10 +37,10 @@ public class CharacteristicsServiceImpl implements CharacteristicsService {
             savedDTO.setName(saved.getName());
             savedDTO.setActive(saved.getActive());
             savedDTO.setCreatedBy(UserMapper.toSummaryDTO(saved.getCreatedBy()));
-            savedDTO.setModifiedBy(UserMapper.toSummaryDTO(saved.getModifiedBy()));
+          //  savedDTO.setModifiedBy(UserMapper.toSummaryDTO(saved.getModifiedBy()));
 
             savedDTO.setCreatedOn(saved.getCreatedOn());
-            savedDTO.setModifiedOn(saved.getModifiedOn());
+            //savedDTO.setModifiedOn(saved.getModifiedOn());
 
             return savedDTO;
         } catch (IllegalArgumentException e) {
