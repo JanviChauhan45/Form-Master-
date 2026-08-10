@@ -1,5 +1,7 @@
 package in.fm.formmaster.SubCharacteristics;
 
+import in.fm.formmaster.Characteristics.CharacteristicsRepository;
+import in.fm.formmaster.ModuleCharacteristicsMapping.ModuleCharRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,8 @@ import java.util.List;
 public class SubCharacteristicsController {
     @Autowired
     private SubCharacteristicsService service;
+
+
 
     @PostMapping("/add")
     public ResponseEntity<?> addSubCharacteristics(@Valid @RequestBody SubCharacteristicsDTO dto){
@@ -37,5 +41,15 @@ public class SubCharacteristicsController {
     public ResponseEntity<List<SubCharacteristicsDTO>> getAllSubCharacteristics(){
         List<SubCharacteristicsDTO> list = service.findAll();
         return  ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping("/characteristics/{charid}")
+    public ResponseEntity<List<SubCharacteristicsDTO>>
+    getByCharacteristics(@PathVariable Long charid) {
+
+        List<SubCharacteristicsDTO> list =
+                service.findAllByCharacteristicsId(charid);
+
+        return ResponseEntity.ok(list);
     }
 }

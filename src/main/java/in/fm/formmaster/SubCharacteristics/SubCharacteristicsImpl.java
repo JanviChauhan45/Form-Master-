@@ -1,6 +1,7 @@
 package in.fm.formmaster.SubCharacteristics;
 
 import in.fm.formmaster.Characteristics.Characteristics;
+import in.fm.formmaster.Characteristics.CharacteristicsDTO;
 import in.fm.formmaster.Characteristics.CharacteristicsRepository;
 import in.fm.formmaster.User.User;
 import in.fm.formmaster.User.UserMapper;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class SubCharacteristicsImpl implements SubCharacteristicsService {
@@ -101,4 +104,44 @@ public class SubCharacteristicsImpl implements SubCharacteristicsService {
         }).toList();
 
     }
+
+    @Override
+    public List<SubCharacteristicsDTO> findAllByCharacteristicsId(Long charid) {
+
+        List<SubCharacteristics> list =
+                repo.findByCharid_IdAndActive(
+                        charid,
+                        AppConstants.ACTIVE
+                );
+
+        return list.stream().map(sc -> {
+
+            SubCharacteristicsDTO dto = new SubCharacteristicsDTO();
+
+            dto.setId(sc.getId());
+            dto.setName(sc.getName());
+            dto.setCharid(sc.getCharid().getId());
+            dto.setActive(sc.getActive());
+
+            dto.setCreatedOn(sc.getCreatedOn());
+            dto.setModifiedOn(sc.getModifiedOn());
+
+            if (sc.getCreatedBy() != null) {
+                dto.setCreatedBy(
+                        UserMapper.toSummaryDTO(sc.getCreatedBy())
+                );
+            }
+
+            if (sc.getModifiedBy() != null) {
+                dto.setModifiedBy(
+                        UserMapper.toSummaryDTO(sc.getModifiedBy())
+                );
+            }
+
+            return dto;
+
+        }).toList();
+    }
+
+
 }

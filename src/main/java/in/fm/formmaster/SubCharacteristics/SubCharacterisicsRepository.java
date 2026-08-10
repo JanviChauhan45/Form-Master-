@@ -6,10 +6,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public interface SubCharacterisicsRepository extends JpaRepository<SubCharacteristics, Long> {
 
-    Optional<SubCharacteristics> findById(long id);
+@Repository
+public interface SubCharacterisicsRepository
+        extends JpaRepository<SubCharacteristics, Long> {
+
     List<SubCharacteristics> findByActiveNot(Integer active);
 
+    List<SubCharacteristics> findByCharid_IdAndActive(
+            Long charid,
+            Integer active
+    );
 }

@@ -1,5 +1,7 @@
 package in.fm.formmaster.SubCharacteristics;
 
+import in.fm.formmaster.Characteristics.CharacteristicsDTO;
+
 import java.util.List;
 
 public interface SubCharacteristicsService {
@@ -8,5 +10,6 @@ public interface SubCharacteristicsService {
     String delete(Long id);
     SubCharacteristicsDTO findById(Long id);
     List<SubCharacteristicsDTO> findAll();
+    public List<SubCharacteristicsDTO> findAllByCharacteristicsId(Long charid);
 
 }

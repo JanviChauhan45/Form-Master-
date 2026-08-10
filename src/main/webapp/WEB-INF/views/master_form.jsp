@@ -330,7 +330,7 @@
                                             <div class="col-xl-2 col-lg-3 col-sm-4 col-xs-12 colmspadding">
                                                 <div class="form-group">
                                                     <label>Sub-Characteristic <span class="text-danger">*</span></label>
-                                                    <select class="selectpicker" data-style="lineheight12 bg-transfer"
+                                                    <select id="subCharacteristicsId" class="selectpicker" data-style="lineheight12 bg-transfer"
                                                         data-live-search="true">
                                                         <option value="" selected="selected">Select</option>
                                                         <option value="1">Abatement</option>
@@ -345,7 +345,7 @@
                                             <div class="col-xl-2 col-lg-3 col-sm-4 col-xs-12 colmspadding">
                                                 <div class="form-group">
                                                     <label>Recurrence <span class="text-danger">*</span></label>
-                                                    <select class="selectpicker" data-style="lineheight12 bg-transfer"
+                                                    <select id="recurranceId" class="selectpicker" data-style="lineheight12 bg-transfer"
                                                         data-live-search="true">
                                                         <option value="" selected="selected">Select</option>
                                                         <option value="1">Annually</option>
@@ -364,7 +364,7 @@
                                             <div class="col-xl-2 col-lg-2 col-sm-4 col-xs-12 colmspadding">
                                                 <div class="form-group">
                                                     <label>Start Month <span class="text-danger">*</span></label>
-                                                    <select class="selectpicker" data-style="lineheight12 bg-transfer"
+                                                    <select id="monthId" class="selectpicker" data-style="lineheight12 bg-transfer"
                                                         data-live-search="true">
                                                         <option value="" selected="selected">Select</option>
                                                         <option value="1">January</option>
