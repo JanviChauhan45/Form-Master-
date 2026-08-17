@@ -114,37 +114,52 @@ callApi({
     },
 
     error: function(xhr) {
+        showToast(
+            "Error",
+            "Month Error",
+            "error"
+        );
         console.log("Month API error:", xhr);
     }
 });
 
 callApi({
-    url:"http://localhost:8080/api/recurrance/getAll",
-    type:"GET",
+    url: "http://localhost:8080/api/recurrance/getAll",
+    type: "GET",
 
-    success: function(recurrances){
-        console.log("Recurrance Response: ", recurrances);
+    success: function (recurrances) {
+
+        console.log("Recurrence API response:", recurrances);
 
         $("#recurranceId").empty();
 
         $("#recurranceId").append(
-            '<option value="">Select Recurrance </option>'
+            '<option value="">Select Recurrence</option>'
         );
 
-        recurrances.forEach(function(recurrance)
-        {
-            $("#recurranceId").append(
-                `<option value="${recurrance.id}">
-                ${recurrance.recurranceName}
-                </option>`
+        recurrances.forEach(function (recurrance) {
 
+            console.log("Recurrence object:", recurrance);
+            console.log("ID:", recurrance.id);
+            console.log("Name:", recurrance.recurranceName);
+
+            $("#recurranceId").append(
+                '<option value="' + recurrance.id + '">' +
+                    recurrance.recurranceName +
+                '</option>'
             );
         });
 
         $("#recurranceId").selectpicker("refresh");
     },
-    error:function(xhr){
-        console.log("Recurrance ApI Error",xhr);
+
+    error: function (xhr) {
+        showToast(
+            "Error",
+            "Recurrance Error",
+            "error"
+        );
+        console.log("Recurrence API Error:", xhr);
     }
 });
 
@@ -196,11 +211,249 @@ $("#characteristicsId").change(function () {
 
         error: function (xhr) {
 
-            console.log(
-                "Sub Characteristics API Error:",
-                xhr
+            showToast(
+                "Error",
+                "Sub Characteristics Error" || xhr ,
+                "error"
             );
+
+
         }
     });
 
 });
+
+$(".save_port_details").click(function () {
+
+    console.log("SAVE BUTTON CLICKED");
+     console.log("Recurrence element:", $("#recurranceId"));
+        console.log("Recurrence value:", $("#recurranceId").val());
+        console.log(
+            "Recurrence selected:",
+            $("#recurranceId option:selected").val()
+        );
+        console.log(
+            "Recurrence selected text:",
+            $("#recurranceId option:selected").text()
+        );
+
+
+    let formData = {
+
+        title: $("#title").val(),
+        alias: $("#alias").val(),
+
+        description: $("#description").val(),
+
+        moduleid: $("#moduleId").val(),
+
+        characteristicsid: $("#characteristicsId").val(),
+
+        subCharacteristicsid: $("#subCharacteristicsId").val(),
+
+        recurranceid: $("#recurranceId").val(),
+
+        month: $("#monthId").val(),
+
+        effectiveDate: $("#date_from").val(),
+
+        compliancePeriod: $("#compliancePeriod").val()
+    };
+
+    console.log("FORM DATA:", formData);
+
+    callApi({
+
+        url: "http://localhost:8080/api/form/add",
+
+        type: "POST",
+
+        data: JSON.stringify(formData),
+
+        contentType: "application/json",
+
+        success: function (response) {
+
+            console.log("FORM CREATED:", response);
+
+            showToast(
+                "Success",
+                "Form created successfully",
+                "success"
+            );
+        },
+
+        error: function (xhr) {
+
+
+            console.log("Status:", xhr.status);
+            console.log("Response:", xhr.responseText);
+            console.log("Full error:", xhr);
+
+
+            showToast(
+                "Error",
+                "Unable to create form" || xhr.responseText ,
+                "error"
+            );
+        }
+    });
+});
+
+function validateForm(){
+    let title = $("#title").val().trim();
+    let alias = $("#alias").val().trim();
+    let description = $("#description").val().trim();
+    let moduleId = $("#moduleId").val();
+    let characteristicsId = $("#characteristicsId").val();
+    let subCharacteristicsId = $("#subCharacteristicsId").val();
+    let recurranceId = $("#recurranceId").val();
+    let monthId = $("#monthId").val();
+    let effectiveDate = $("#date_from").val();
+    let compliancePeriod = $("#compliancePeriod").val();
+
+    if(title === ""){
+        showToast(
+            "Validation",
+            "Title is required",
+            "error"
+        );
+        $("#title").focus();
+        return false;
+    }
+
+    if(title.length < 3  || title.length > 50){
+        showToast(
+          "Validation",
+          "Title can contain min 3 and max 50 characters"
+          "error"
+        );
+
+        $("#title").focus();
+        return false;
+    }
+
+    if(alias === ""){
+        showToast(
+            "Validation",
+            "Alias is required",
+            "error"
+        );
+        $("#alias").focus();
+        return false;
+
+    }
+    if(alias.length < 2 || alias.length > 30){
+        showToast(
+        "Validation",
+        "Alias name can contain min 2 and max 30 characters",
+        "error"
+        );
+
+        $("#alias").focus();
+        return false;
+    }
+
+    if(description === ""){
+        showToast(
+            "Validation",
+            "Text is required",
+            "error"
+        );
+
+        $("#description").focus();
+        return false;
+    }
+
+    if(description.length < 10 || description > 255){
+        showToast(
+            "Validation",
+            "Text must contain minimum 10 characters",
+            "error"
+        );
+
+        $("#description").focus();
+        return false;
+    }
+
+    if(moduleId === ""){
+        showToast(
+            "Validation",
+            "Please select Module",
+            "error"
+        );
+
+    }
+
+    if(characteristicsId === ""){
+        showToast(
+        "Validation",
+        "Please select Charateristics",
+        "error"
+        );
+    }
+
+    if(subCharacteristicsId === ""){
+        showToast(
+        "Validation",
+        "Please select SubCharacteristics",
+        "error"
+        );
+    }
+
+    if(recurranceId === ""){
+        showToast(
+        "Validation",
+        "Please select Recurrance",
+        "error"
+        );
+    }
+
+    if(monthId === ""){
+        showToast(
+            "Validation",
+            "Please select Month",
+            "error"
+        );
+    }
+
+    if(effectiveDate === ""){
+        showToast(
+            "Validation",
+            "Please select Effective Date",
+            "error"
+        );
+    }
+
+
+    if(compliancePeriod === ""){
+        showToast(
+            "Validation",
+            "Please add Compliance Period",
+            "error"
+        );
+
+       $("#compliancePeriod").focus();
+       return false;
+    }
+
+}
+
+function clearForm(){
+     $('#title').val('');
+      $('#alias').val('');
+     $('#description').val('');
+     $("#moduleId").val("");
+     $('#moduleId').selectpicker('refresh');
+     $("#characteristicsId").val("");
+     $('#characteristicsId').selectpicker('refresh');
+     $("#subCharacteristicsId").val("");
+     $('#subCharacteristicsId').selectpicker('refresh');
+     $("#recurranceId").val("");
+     $('#recurranceId').selectpicker('refresh');
+     $("#monthId").val("");
+     $('#monthId').selectpicker('refresh');
+     $('#date_from').val('');
+     $('#compliancePeriod').val('');
+
+}

@@ -33,6 +33,7 @@ public class RecurranceServiceImpl implements RecurranceService {
         Recurrance saved = repo.save(recurrance);
 
         RecurranceDTO dto1 = new RecurranceDTO();
+        dto1.setId(dto.getId());
         dto1.setRecurranceName(dto.getRecurranceName());
         dto1.setActive(saved.getActive());
         dto1.setCreatedOn(saved.getCreatedOn());
@@ -65,6 +66,7 @@ public class RecurranceServiceImpl implements RecurranceService {
         List<Recurrance> recurrances = repo.findByActiveNot(9);
         return recurrances.stream().map(rec ->{
             RecurranceDTO dto = new RecurranceDTO();
+            dto.setId(rec.getId());
             dto.setRecurranceName(rec.getRecurranceName());
             dto.setActive(rec.getActive());
             dto.setCreatedOn(rec.getCreatedOn());

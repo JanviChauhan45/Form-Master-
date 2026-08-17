@@ -11,5 +11,14 @@ public interface ModuleCharRepository extends JpaRepository<ModuleCharacteristic
     Optional<ModuleCharacteristicsMapping> findById(Long id);
     List<ModuleCharacteristicsMapping> findByActiveNot(Integer active);
     List<ModuleCharacteristicsMapping> findByModuleId_IdAndActive(Long moduleId, Integer active);
+    List<ModuleCharacteristicsMapping> findByModuleId_IdAndCharacteristicId_Id(
+            Long moduleId,
+            Long characteristicId
+    );
+
+    boolean existsByModuleId_IdAndCharacteristicId_Id(
+            Long moduleId,
+            Long characteristicId
+    );
 
 }

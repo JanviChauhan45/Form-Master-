@@ -274,7 +274,7 @@
                                                 <div class="form-group">
                                                     <label>Title Text (English) <span
                                                             class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control"  maxlength="50" id="title">
                                                 </div>
                                             </div>
 
@@ -282,7 +282,7 @@
                                             <div class="col-xl-2 col-lg-2 col-sm-3 col-xs-12 colmspadding">
                                                 <div class="form-group">
                                                     <label>Alias Name <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control"  maxlength="30" id="alias">
                                                 </div>
                                             </div>
 
@@ -393,7 +393,7 @@
                                                         <div class="form-group">
                                                             <label>Compliance Period <span
                                                                     class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control" id="compliancePeriod"  maxlength="50"
                                                                 placeholder="In Months">
                                                         </div>
                                                     </div>
@@ -436,7 +436,7 @@
                                                             data-toggle="tooltip" data-placement="bottom" title=""
                                                             data-original-title="View History"><i
                                                                 class="fa fa-history text-info fa-size action"></i></a></span>
-                                                    <textarea class="form-control textareasize"></textarea>
+                                                    <textarea class="form-control textareasize" id="description"></textarea>
                                                 </div>
                                             </div>
 
@@ -853,7 +853,7 @@
                                         <div class="row pl-2 pr-2">
                                             <div class="col-xl-7 col-lg-12 col-sm-12 col-xs-12 colmspadding">
                                                 <textarea class="form-control textareasize"
-                                                    placeholder="Enter Your Answer"></textarea>
+                                                    placeholder="Enter Your Answer" ></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -1019,7 +1019,7 @@
                                         </tr>
                                         <tr>
                                             <td class="border-0"><label class="mt-1 mb-0">Description</label></td>
-                                            <td class="border-0"><textarea class="form-control textareasize"
+                                            <td class="border-0"><textarea class="form-control textareasize" "
                                                     placeholder="Enter Description in English"
                                                     style="min-height: 45px !important;"></textarea></td>
                                             

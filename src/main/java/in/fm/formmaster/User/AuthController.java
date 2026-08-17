@@ -16,6 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -37,8 +38,6 @@ public class AuthController {
             @RequestBody LoginRequestDTO loginRequest,
             HttpServletResponse response) {
 
-
-
         Authentication authentication =
                 authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(
@@ -47,63 +46,39 @@ public class AuthController {
                         )
                 );
 
-
-
-
         CustomUserDetails customUserDetails =
                 (CustomUserDetails) authentication.getPrincipal();
-
-
-
 
         User user = customUserDetails.getUser();
 
 
+        // ==========================================
+        // DEACTIVATE ALL EXISTING ACTIVE SESSIONS
+        // ==========================================
 
-
-        UserSession existingSession =
-                userSessionRepository
-                        .findByUserAndActive(
-                                user,
-                                AppConstants.ACTIVE
-                        )
-                        .orElse(null);
-
-        if (existingSession != null) {
-
-            // If the existing session is still valid, reuse it
-            if (existingSession.getExpiryAt().isAfter(java.time.Instant.now())) {
-
-                String token = jwtService.generateToken(
-                        customUserDetails,
-                        existingSession.getTokenid()   // use your getter name here
+        List<UserSession> existingSessions =
+                userSessionRepository.findAllByUserAndActive(
+                        user,
+                        AppConstants.ACTIVE
                 );
 
-                Cookie cookie = new Cookie("jwt", token);
-                cookie.setHttpOnly(true);
-                cookie.setSecure(false);
-                cookie.setPath("/");
-                cookie.setMaxAge(60 * 60);
+        for (UserSession session : existingSessions) {
 
-                response.addCookie(cookie);
-
-                return ResponseEntity.ok(
-                        new LoginResponseDTO(
-                                token,
-                                "Bearer",
-                                user.getRoleid().getRole()
-                        )
-                );
-            }
-
-            // Existing session has expired
-            existingSession.setActive(AppConstants.DELETED);
-            userSessionRepository.save(existingSession);
+            session.setActive(AppConstants.INACTIVE);
         }
+
+        if (!existingSessions.isEmpty()) {
+
+            userSessionRepository.saveAll(existingSessions);
+        }
+
+
+        // ==========================================
+        // CREATE NEW TOKEN
+        // ==========================================
 
         String tokenId =
                 UUID.randomUUID().toString();
-
 
         String token =
                 jwtService.generateToken(
@@ -112,7 +87,9 @@ public class AuthController {
                 );
 
 
-
+        // ==========================================
+        // CREATE NEW SESSION
+        // ==========================================
 
         UserSession userSession =
                 new UserSession(
@@ -124,13 +101,12 @@ public class AuthController {
                         AppConstants.ACTIVE
                 );
 
-
-
-
         userSessionRepository.save(userSession);
 
 
-
+        // ==========================================
+        // CREATE COOKIE
+        // ==========================================
 
         Cookie cookie =
                 new Cookie(
@@ -139,14 +115,8 @@ public class AuthController {
                 );
 
         cookie.setHttpOnly(true);
-
-
         cookie.setSecure(false);
-
-
         cookie.setPath("/");
-
-
         cookie.setMaxAge(60 * 60);
 
         response.addCookie(cookie);
@@ -163,16 +133,15 @@ public class AuthController {
         );
     }
 
+
     @PostMapping("/logout")
     public ResponseEntity<String> logout(
             HttpServletRequest request,
             HttpServletResponse response) {
 
-
         Cookie[] cookies = request.getCookies();
 
         String jwt = null;
-
 
         if (cookies != null) {
 
@@ -194,11 +163,15 @@ public class AuthController {
                     jwtService.extractTokenId(jwt);
 
             UserSession session =
-                    userSessionRepository.findById(tokenId).orElse(null);
+                    userSessionRepository
+                            .findById(tokenId)
+                            .orElse(null);
 
             if (session != null) {
 
-                session.setActive(AppConstants.INACTIVE);
+                session.setActive(
+                        AppConstants.INACTIVE
+                );
 
                 userSessionRepository.save(session);
             }
@@ -209,14 +182,9 @@ public class AuthController {
                 new Cookie("jwt", null);
 
         deleteCookie.setHttpOnly(true);
-
         deleteCookie.setSecure(false);
-
         deleteCookie.setPath("/");
-
-
         deleteCookie.setMaxAge(0);
-
 
         response.addCookie(deleteCookie);
 
@@ -228,12 +196,14 @@ public class AuthController {
 
 
     @GetMapping("/me")
-    public ResponseEntity<UserDTO> getCurrentUser(Authentication authentication) {
+    public ResponseEntity<UserDTO> getCurrentUser(
+            Authentication authentication) {
 
         CustomUserDetails customUserDetails =
                 (CustomUserDetails) authentication.getPrincipal();
 
-        User user = customUserDetails.getUser();
+        User user =
+                customUserDetails.getUser();
 
         UserDTO dto = new UserDTO();
 
