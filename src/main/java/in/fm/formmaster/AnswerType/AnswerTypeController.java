@@ -13,7 +13,7 @@ public class AnswerTypeController {
     @Autowired
     private AnswerTypeService service;
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<?> save(@RequestBody AnswerTypeDTO dto) {
         try{
             AnswerTypeDTO dto1 = service.save(dto);
