@@ -402,21 +402,9 @@ cd FormMaster
 
 Create a PostgreSQL database and update the database configuration in your application properties.
 
-### 4. Build the project
 
-Using Maven:
-
-```bash
-mvn clean install
 ```
-
-### 5. Run the application
-
-```bash
-mvn spring-boot:run
-```
-
-Or run the main Spring Boot application class directly from your IDE.
+run the main Spring Boot application class directly from your IDE.
 
 ---
 
